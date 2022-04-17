@@ -13,8 +13,6 @@ class Config():
     SQLALCHEMY_DATABASE_URI = db_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # heroku
-    SECRET_KEY = os.getenv("SECRET_KEY")
 
     # flask config
     DEBUG = True
