@@ -1,5 +1,9 @@
-from Flask import flask
+import flask
+from flask import Flask, Blueprint
+import app
 
-@app.route("/")
-def landing():
-    flask.render_template("index.html")
+blueprint = Blueprint('blueprint', __name__, static_folder="static", template_folder='templates')
+
+@blueprint.route("/")
+def index():
+    return flask.render_template("index.html")

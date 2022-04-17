@@ -1,4 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
+from . import db
 
 class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -11,7 +11,6 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     order_time = db.Column(db.DateTime, nullable=False)
     pickup_time = db.Column(db.DateTime, nullable=False)
-    # total = db.Column(db.Float, nullable=False)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
     lineitems = db.relationship('LineItem', backref='order', lazy=True)
 
@@ -29,8 +28,8 @@ class Product(db.Model):
     recipe = db.relationship('Recipe', backref='product', uselist=False)
 
 recipe_ingredient = db.Table('recipe_ingredient', 
-    db.Column(db.Integer, db.ForeignKey('recipe.id')),
-    db.Column(db.Integer, db.ForeignKey('ingredient.id'))
+    db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
+    db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id'))
 )
 
 class Recipe(db.Model):
@@ -42,7 +41,7 @@ class Recipe(db.Model):
     proof = db.Column(db.Integer, nullable=True)
     baking_time = db.Column(db.Integer, nullable=False)
     ingredients = db.relationship('Ingredient', secondary=recipe_ingredient, backref='ingredients', lazy=True)
-    product_id = db.Column(db.Integer, db.ForeignKey('product_id'), unique=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), unique=True)
 
 class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -61,6 +60,3 @@ class Flour(Ingredient):
     malted = db.Column(db.Boolean, nullable=False)
 
     __mapper_args__ = {'polymorphic_identity': 'flour'}
-
-
-db.create_all()
