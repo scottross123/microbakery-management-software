@@ -1,0 +1,9 @@
+<form method="POST" action="/save_customer">
+    {{ form.crsf_token }}
+
+    {{ form.f_name.label }} {{ form.f_name }}
+    {{ form.l_name.label }} {{ form.l_name }}
+    {{ form.phone_num.label }} {{ form.phone_num }}
+    
+    {{ form.submit }}
+</form>

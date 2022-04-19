@@ -3,8 +3,9 @@
         <title>Microbakery Database</title>
     </head>
     <body>
-    
-        {{ record_table, form }}
+        <div id="add-record-form">
+            {% include './forms/' + record_table + '.html' %}
+        </div>
 
     </body>
 </html>

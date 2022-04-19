@@ -21,7 +21,7 @@ class Order(db.Model):
     pickup_time = db.Column(db.DateTime, nullable=False)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
     lineitems = db.relationship('LineItem', backref='order', lazy=True)
-    orders = db.relationship('Customer', backref='customer', lazy=True)
+    orders = db.relationship('Customer', backref='orders', lazy=True)
 
     def __repr__(self):
         return "<Order(order_time='%s', pickup_time='%s', customer='%s')>" % (self.order_time, self.pickup_time, self.customer)
