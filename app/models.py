@@ -38,7 +38,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    price = db.Column(db.Decimal, nullable=False)
     lineitems = db.relationship('LineItem', backref='product', lazy=True)
     recipe = db.relationship('Recipe', backref='product', uselist=False)
 
@@ -58,8 +58,8 @@ class Recipe(db.Model):
     bulk_fermentation = db.Column(db.Integer, nullable=True)
     proof = db.Column(db.Integer, nullable=True)
     baking_time = db.Column(db.Integer, nullable=False)
-    recipes = db.relationship('Ingredient', secondary=recipe_ingredient, backref='recipes', lazy=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), unique=True)
+    recipes = db.relationship('Ingredient', secondary=recipe_ingredient, backref='recipes', lazy=True)
 
     def __repr__(self):
         return "<Recipe(prep_time='%s', mix_time='%s', ddt='%s', bulk_fermentation='%s', proof='%s', baking_time='%s', product='%s', ingredients='%s')>" % (
@@ -69,7 +69,7 @@ class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
-    cost = db.Column(db.Float, nullable=False)
+    cost = db.Column(db.Decimal, nullable=False)
     ingredients = db.relationship('Recipe', secondary=recipe_ingredient, backref='ingredients', lazy=True)
 
     __mapper_args__ = {'polymorphic_identity': 'ingredient'}
@@ -82,7 +82,7 @@ class Ingredient(db.Model):
 class Flour(Ingredient):
     id = db.Column(db.Integer, db.ForeignKey('ingredient.id'), primary_key=True, nullable=False, unique=True)
     grain = db.Column(db.String(100), nullable=False)
-    protein = db.Column(db.Float, nullable=False)
+    protein = db.Column(db.Decimal, nullable=False)
     extraction = db.Column(db.Integer, nullable=False)
     malted = db.Column(db.Boolean, nullable=False)
 
