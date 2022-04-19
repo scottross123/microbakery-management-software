@@ -38,7 +38,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
-    price = db.Column(db.Decimal, nullable=False)
+    price = db.Column(db.Numeric, nullable=False)
     lineitems = db.relationship('LineItem', backref='product', lazy=True)
     recipe = db.relationship('Recipe', backref='product', uselist=False)
 
@@ -53,7 +53,7 @@ recipe_ingredient = db.Table('recipe_ingredient',
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     prep_time = db.Column(db.Integer, nullable=False)
-    mix_time = db.Column(db.Integer, nullable=True)
+    mix_time = db.Column(db.Integer, nullable=False)
     ddt = db.Column(db.Integer, nullable=True)
     bulk_fermentation = db.Column(db.Integer, nullable=True)
     proof = db.Column(db.Integer, nullable=True)
@@ -69,7 +69,7 @@ class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
-    cost = db.Column(db.Decimal, nullable=False)
+    cost = db.Column(db.Numeric, nullable=False)
     ingredients = db.relationship('Recipe', secondary=recipe_ingredient, backref='ingredients', lazy=True)
 
     __mapper_args__ = {'polymorphic_identity': 'ingredient'}
@@ -81,8 +81,8 @@ class Ingredient(db.Model):
 
 class Flour(Ingredient):
     id = db.Column(db.Integer, db.ForeignKey('ingredient.id'), primary_key=True, nullable=False, unique=True)
-    grain = db.Column(db.String(100), nullable=False)
-    protein = db.Column(db.Decimal, nullable=False)
+    grain = db.Column(db.String(150), nullable=False)
+    protein = db.Column(db.Numeric, nullable=False)
     extraction = db.Column(db.Integer, nullable=False)
     malted = db.Column(db.Boolean, nullable=False)
 

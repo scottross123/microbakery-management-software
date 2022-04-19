@@ -14,7 +14,7 @@ def create_app():
     from . import models
 
     db.init_app(app)
-    db.create_all(app=app)
+    #db.create_all(app=app)
 
     from .views import blueprint
 
