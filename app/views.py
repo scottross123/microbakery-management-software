@@ -1,7 +1,8 @@
 import flask
-from flask import Flask, Blueprint, request
+from flask import Blueprint, request
 import app
-from .models import Customer
+#from .models import Customer, Order, LineItem, Product, Recipe, Ingredient, Flour
+from .forms import CustomerForm, OrderForm, LineItemForm, ProductForm, RecipeForm, IngredientForm, FlourForm
 
 blueprint = Blueprint('blueprint', __name__, static_folder="static", template_folder='templates')
 
@@ -20,5 +21,6 @@ def show_table(table):
         return flask.render_template("error.html", error=error)
 
     return flask.render_template("table.html", results=results)
+
     
     
