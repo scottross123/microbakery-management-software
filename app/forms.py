@@ -52,7 +52,7 @@ class FlourForm(FlaskForm):
     malted = BooleanField('Does this flour contain barley malt flour? (malted)', validators=[InputRequired()])
     submit = SubmitField('Add record!')
 
-class DeleteForm(FlaskForm):
-    table_name = StringField('Name of the table you want to delete from?', validators=[InputRequired(), Length(max=100)])
+class SelectForm(FlaskForm):
+    table_name = StringField('Name of the table?', validators=[InputRequired(), Length(max=100)])
     id = IntegerField('ID of the entity?', validators=[InputRequired()])
-    submit = SubmitField('Delete record!')
+    submit = SubmitField('Confirm!')

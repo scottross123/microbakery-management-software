@@ -1,9 +1,9 @@
 import flask
-from flask import Blueprint, request, g
+from flask import Blueprint, request, g, flash
 import app
 from . import db
 from .models import Customer, Order, LineItem, Product, Recipe, Ingredient, Flour
-from .forms import CustomerForm, OrderForm, LineItemForm, ProductForm, RecipeForm, IngredientForm, FlourForm, DeleteForm
+from .forms import CustomerForm, OrderForm, LineItemForm, ProductForm, RecipeForm, IngredientForm, FlourForm, SelectForm
 
 blueprint = Blueprint('blueprint', __name__, static_folder="static", template_folder='templates')
 
@@ -33,7 +33,7 @@ def load_variables():
 def index():
     return flask.render_template("index.html")
 
-@blueprint.route("/<table>")
+@blueprint.route("/table_<table>")
 def show_table(table):
     try:
         print(g.table_list[table])
@@ -65,7 +65,7 @@ def save_record(new_record_table):
 
 @blueprint.route("/delete")
 def delete():
-    form = DeleteForm()
+    form = SelectForm()
     return flask.render_template("delete.html", form=form)
     
 @blueprint.route("/delete_record", methods=["POST"])
@@ -80,3 +80,20 @@ def delete_record():
         return flask.render_template("error.html", error=error)   
     
     return flask.redirect(flask.url_for("blueprint.index"))
+
+@blueprint.route("/select", methods=["GET", "POST"])
+def select():
+    form = SelectForm()
+    print(form.errors)
+
+    if form.is_submitted():
+        try:
+            data = flask.request.form
+            table = g.table_list[data['table_name'].lower()]
+            result = table.query.filter_by(id=data['id']).first()
+            print(result)
+            flash(result)
+        except Exception as error:
+            return flask.render_template("error.html", error=error)   
+    
+    return flask.render_template("select.html", form=form)
