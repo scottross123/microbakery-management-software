@@ -51,7 +51,7 @@ class FlourForm(FlaskForm):
     grain = StringField('Type of grain? (include hardness, season, and species)', validators=[InputRequired(), Length(max=150)])
     protein = DecimalField('Protein %% of the flour?', validators=[InputRequired()], places=1)
     extraction = IntegerField('Flour extraction? (100 for whole grain flour)', validators=[InputRequired()])
-    malted = BooleanField('Does this flour contain barley malt flour? (malted)', validators=[InputRequired()])
+    malted = StringField('Does this flour contain barley malt flour? (malted)', validators=[InputRequired()])
     submit = SubmitField('Add record!')
 
 class SelectForm(FlaskForm):

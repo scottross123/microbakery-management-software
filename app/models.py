@@ -23,12 +23,13 @@ class Order(db.Model):
     lineitems = db.relationship('LineItem', backref='order', lazy=True)
 
     def __repr__(self):
-        return "<Order(id='%s', order_time='%s', pickup_time='%s', customer='%s')>" % (self.id, self.order_time, self.pickup_time, self.customer_id)
+        return "<Order(id='%s', order_time='%s', pickup_time='%s', customer='%s', lineitems='%s)>" % (self.id, self.order_time, self.pickup_time, self.customer_id, self.lineitems)
 
 class LineItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), primary_key=True, nullable=False) 
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True, nullable=False)
+    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=False) 
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
 
     def __repr__(self):
         return "<LineItem(id='%s', quantity='%s', order='%s', product='%s')>" % (self.id, self.quantity, self.order, self.product)  
@@ -42,7 +43,7 @@ class Product(db.Model):
     recipe = db.relationship('Recipe', backref='product', uselist=False)
 
     def __repr__(self):
-        return "<Product(id='%s', name='%s', description='%s', price='%s')>" % (self.id, self.name, self.description, self.price)
+        return "<Product(id='%s', name='%s', description='%s', price='%s', lineitems='%s', recipe='%s')>" % (self.id, self.name, self.description, self.price, self.lineitems, self.recipe)
 
 recipe_ingredient = db.Table('recipe_ingredient', 
     db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
@@ -61,8 +62,8 @@ class Recipe(db.Model):
     ingredients = db.relationship('Ingredient', secondary=recipe_ingredient, back_populates='recipes', lazy=True)
 
     def __repr__(self):
-        return "<Recipe(id='%s', prep_time='%s', mix_time='%s', ddt='%s', bulk_fermentation='%s', proof='%s', baking_time='%s', product='%s', ingredients='%s')>" % (
-            self.id, self.prep_time, self.mix_time, self.ddt, self.bulk_fermentation, self.proof, self.baking_time, self.product, self.ingredients)
+        return "<Recipe(id='%s', prep_time='%s', mix_time='%s', ddt='%s', bulk_fermentation='%s', proof='%s', baking_time='%s', product_id='%s', ingredients='%s')>" % (
+            self.id, self.prep_time, self.mix_time, self.ddt, self.bulk_fermentation, self.proof, self.baking_time, self.product_id, self.ingredients)
 
 class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -83,9 +84,9 @@ class Flour(Ingredient):
     grain = db.Column(db.String(150), nullable=False)
     protein = db.Column(db.Numeric, nullable=False)
     extraction = db.Column(db.Integer, nullable=False)
-    malted = db.Column(db.Boolean, nullable=False)
+    malted = db.Column(db.String(1), nullable=False)
 
     __mapper_args__ = {'polymorphic_identity': 'flour'}
 
     def __repr__(self):
-        return "<Ingredient(id='%s', name='%s', description='%s', cost='%s', ingredients='%s')>" % (self.id, self.name, self.description, self.cost, self.ingredients)
+        return "<Ingredient(id='%s', name='%s', description='%s', cost='%s', grain='%s', protein='%s', extraction='%s', malted='%s', recipes='%s')>" % (self.id, self.name, self.description, self.cost, self.grain, self.protein, self.extraction, self.malted, self.recipes)
