@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, DateTimeField, DecimalField, BooleanField, SubmitField
+from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import InputRequired, Length
+from .models import Product
 
 class CustomerForm(FlaskForm): 
     f_name = StringField('Customer\'s first name?', validators=[InputRequired(), Length(max=100)])
@@ -10,7 +12,7 @@ class CustomerForm(FlaskForm):
 
 class OrderForm(FlaskForm):
     order_time = DateTimeField('Time ordered? (leave blank for current time)', format='%Y-%m-%d %H:%M:%S')
-    order_time = DateTimeField('Pick up time?', format='%Y-%m-%d %H:%M:%S', validators=[InputRequired()])
+    pickup_time = DateTimeField('Pick up time?', format='%Y-%m-%d %H:%M:%S', validators=[InputRequired()])
     customer_id = IntegerField('Customer ID?', validators=[InputRequired()])
     submit = SubmitField('Add record!')
 
@@ -55,4 +57,13 @@ class FlourForm(FlaskForm):
 class SelectForm(FlaskForm):
     table_name = StringField('Name of the table?', validators=[InputRequired(), Length(max=100)])
     id = IntegerField('ID of the entity?', validators=[InputRequired()])
+    submit = SubmitField('Confirm!')
+
+def product_query():
+    return Product.query
+
+class AddItemsToOrderForm(FlaskForm):
+    order_id = IntegerField('ID of order you want to add items to?', validators=[InputRequired()])
+    product = QuerySelectField('Pick a product to add to order', query_factory=product_query, get_label='id')
+    quantity = IntegerField('How many items?', validators=[InputRequired()])
     submit = SubmitField('Confirm!')

@@ -6,7 +6,7 @@ class Customer(db.Model):
     f_name = db.Column(db.String(100), nullable=False)
     l_name = db.Column(db.String(100), nullable=False)
     phone_num = db.Column(db.String(12), nullable=False)
-    customer = db.relationship('Order', backref='customer', lazy=True)
+    orders = db.relationship('Order', backref='customer', lazy=True)
 
     @hybrid_property
     def name(self):
@@ -21,10 +21,9 @@ class Order(db.Model):
     pickup_time = db.Column(db.DateTime, nullable=False)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
     lineitems = db.relationship('LineItem', backref='order', lazy=True)
-    orders = db.relationship('Customer', backref='orders', lazy=True)
 
     def __repr__(self):
-        return "<Order(id='%s', order_time='%s', pickup_time='%s', customer='%s')>" % (self.id, self.order_time, self.pickup_time, self.customer)
+        return "<Order(id='%s', order_time='%s', pickup_time='%s', customer='%s')>" % (self.id, self.order_time, self.pickup_time, self.customer_id)
 
 class LineItem(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
@@ -59,7 +58,7 @@ class Recipe(db.Model):
     proof = db.Column(db.Integer, nullable=True)
     baking_time = db.Column(db.Integer, nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), unique=True)
-    recipes = db.relationship('Ingredient', secondary=recipe_ingredient, backref='recipes', lazy=True)
+    ingredients = db.relationship('Ingredient', secondary=recipe_ingredient, back_populates='recipes', lazy=True)
 
     def __repr__(self):
         return "<Recipe(id='%s', prep_time='%s', mix_time='%s', ddt='%s', bulk_fermentation='%s', proof='%s', baking_time='%s', product='%s', ingredients='%s')>" % (
@@ -70,7 +69,7 @@ class Ingredient(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     cost = db.Column(db.Numeric, nullable=False)
-    ingredients = db.relationship('Recipe', secondary=recipe_ingredient, backref='ingredients', lazy=True)
+    recipes = db.relationship('Recipe', secondary=recipe_ingredient, back_populates='ingredients', lazy=True)
 
     __mapper_args__ = {'polymorphic_identity': 'ingredient'}
 

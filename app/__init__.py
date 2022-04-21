@@ -12,7 +12,8 @@ def create_app():
 
     from . import models
     db.init_app(app)
-    db.create_all(app=app)
+    with app.app_context():
+        db.create_all()
 
     from .views import blueprint
     app.register_blueprint(blueprint)

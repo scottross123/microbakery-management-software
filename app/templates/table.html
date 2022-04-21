@@ -1,12 +1,25 @@
 <html>
     <head>
         <title>Microbakery Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="static/index.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     </head>
     <body>
-        <ol>
-            {% for tuple in results %}
-                <li>{{tuple}}</li>
-            {% endfor %}
-        </ol>
+        <div class="content is-large is-centered">
+           <section class="hero is-info">
+                <div class="hero-body">
+                    <p class="title">
+                    {{ table }} table
+                    </p>
+                </div>
+            </section>
+            <ol>
+                {% for tuple in results %}
+                    <li>{{tuple}}</li>
+                {% endfor %}
+            </ol>
+        </div>
     </body>
 </html>
