@@ -1,0 +1,13 @@
+<form method="POST" action="/save_flour">
+    {{ form.crsf_token }}
+
+    {{ form.name.label }} {{ form.name }}
+    {{ form.description.label }} {{ form.description }}
+    {{ form.cost.label }} {{ form.cost }}
+    {{ form.grain.label }} {{ form.grain}}
+    {{ form.protein.label }} {{ form.protein }}
+    {{ form.extraction.label }} {{ form.extraction }}
+    {{ form.malted.label }} {{ form.maltd }}
+    
+    {{ form.submit }}
+</form>
