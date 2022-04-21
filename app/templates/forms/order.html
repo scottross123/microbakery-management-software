@@ -1,9 +1,9 @@
 <form method="POST" action="/save_order">
     {{ form.crsf_token }}
 
-    {{ form.order_time.label}} {{ form.order_time}}
-    {{ form.pickup_time.label }} {{ form.pickup_time }}
-    {{ form.customer_id.label }} {{ form.customer_id }}
-    
+    {{ form.order_time.label}} {{ form.order_time}} <br><br>
+    {{ form.pickup_time.label }} {{ form.pickup_time }} <br><br>
+    {{ form.customer_id.label }} {{ form.customer_id }} <br><br>
+     
     {{ form.submit }}
 </form>

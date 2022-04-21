@@ -33,7 +33,7 @@ def load_variables():
 def index():
     return flask.render_template("index.html")
 
-@blueprint.route("/table_<table>")
+@blueprint.route("/show_<table>")
 def show_table(table):
     try:
         print(g.table_list[table])
