@@ -3,7 +3,7 @@ from flask import Blueprint, request, g
 import app
 from . import db
 from .models import Customer, Order, LineItem, Product, Recipe, Ingredient, Flour
-from .forms import CustomerForm, OrderForm, LineItemForm, ProductForm, RecipeForm, IngredientForm, FlourForm
+from .forms import CustomerForm, OrderForm, LineItemForm, ProductForm, RecipeForm, IngredientForm, FlourForm, DeleteForm
 
 blueprint = Blueprint('blueprint', __name__, static_folder="static", template_folder='templates')
 
@@ -62,4 +62,21 @@ def save_record(new_record_table):
     db.session.commit()
     
     return flask.redirect(flask.url_for("blueprint.index"))
+
+@blueprint.route("/delete")
+def delete():
+    form = DeleteForm()
+    return flask.render_template("delete.html", form=form)
     
+@blueprint.route("/delete_record", methods=["POST"])
+def delete_record():
+    data = flask.request.form
+    table = g.table_list[data['table_name'].lower()]
+    
+    try:
+        table.query.filter_by(id=data['id']).delete()
+        db.session.commit()
+    except Exception as error:
+        return flask.render_template("error.html", error=error)   
+    
+    return flask.redirect(flask.url_for("blueprint.index"))

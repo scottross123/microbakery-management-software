@@ -13,7 +13,7 @@ class Customer(db.Model):
         return self.f_name + " " + self.l_name
 
     def __repr__(self):
-        return "<Customer(f_name='%s', l_name='%s', phone_num='%s')>" % (self.f_name, self.l_name, self.phone_num)
+        return "<Customer(id='%s', f_name='%s', l_name='%s', phone_num='%s')>" % (self.id, self.f_name, self.l_name, self.phone_num)
 
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -24,7 +24,7 @@ class Order(db.Model):
     orders = db.relationship('Customer', backref='orders', lazy=True)
 
     def __repr__(self):
-        return "<Order(order_time='%s', pickup_time='%s', customer='%s')>" % (self.order_time, self.pickup_time, self.customer)
+        return "<Order(id='%s', order_time='%s', pickup_time='%s', customer='%s')>" % (self.id, self.order_time, self.pickup_time, self.customer)
 
 class LineItem(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
@@ -32,7 +32,7 @@ class LineItem(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True, nullable=False)
 
     def __repr__(self):
-        return "<LineItem(quantity='%s', order='%s', product='%s')>" % (self.quantity, self.order, self.product)  
+        return "<LineItem(id='%s', quantity='%s', order='%s', product='%s')>" % (self.id, self.quantity, self.order, self.product)  
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -43,7 +43,7 @@ class Product(db.Model):
     recipe = db.relationship('Recipe', backref='product', uselist=False)
 
     def __repr__(self):
-        return "<Product(name='%s', description='%s', price='%s')>" % (self.name, self.description, self.price)
+        return "<Product(id='%s', name='%s', description='%s', price='%s')>" % (self.id, self.name, self.description, self.price)
 
 recipe_ingredient = db.Table('recipe_ingredient', 
     db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
@@ -62,8 +62,8 @@ class Recipe(db.Model):
     recipes = db.relationship('Ingredient', secondary=recipe_ingredient, backref='recipes', lazy=True)
 
     def __repr__(self):
-        return "<Recipe(prep_time='%s', mix_time='%s', ddt='%s', bulk_fermentation='%s', proof='%s', baking_time='%s', product='%s', ingredients='%s')>" % (
-            self.prep_time, self.mix_time, self.ddt, self.bulk_fermentation, self.proof, self.baking_time, self.product, self.ingredients)
+        return "<Recipe(id='%s', prep_time='%s', mix_time='%s', ddt='%s', bulk_fermentation='%s', proof='%s', baking_time='%s', product='%s', ingredients='%s')>" % (
+            self.id, self.prep_time, self.mix_time, self.ddt, self.bulk_fermentation, self.proof, self.baking_time, self.product, self.ingredients)
 
 class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -75,7 +75,7 @@ class Ingredient(db.Model):
     __mapper_args__ = {'polymorphic_identity': 'ingredient'}
 
     def __repr__(self):
-        return "<Ingredient(name='%s', description='%s', cost='%s', recipes='%s')>" % (self.name, self.description, self.cost, self.recipes)
+        return "<Ingredient(id='%s', name='%s', description='%s', cost='%s', recipes='%s')>" % (self.id, self.name, self.description, self.cost, self.recipes)
     
 
 
@@ -89,4 +89,4 @@ class Flour(Ingredient):
     __mapper_args__ = {'polymorphic_identity': 'flour'}
 
     def __repr__(self):
-        return "<Ingredient(name='%s', description='%s', cost='%s', ingredients='%s')>" % (self.name, self.description, self.cost, self.ingredients)
+        return "<Ingredient(id='%s', name='%s', description='%s', cost='%s', ingredients='%s')>" % (self.id, self.name, self.description, self.cost, self.ingredients)
