@@ -81,7 +81,7 @@ def delete_record():
     
     return flask.redirect(flask.url_for("blueprint.index"))
 
-@blueprint.route("/select", methods=["POST"])
+@blueprint.route("/select", methods=["GET", "POST"])
 def select():
     form = SelectForm()
     print(form.errors)
