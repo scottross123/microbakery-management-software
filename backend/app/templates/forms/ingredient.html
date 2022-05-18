@@ -1,0 +1,9 @@
+<form method="POST" action="/save_ingredient">
+    {{ form.crsf_token }}
+
+    {{ form.name.label }} {{ form.name }} <br><br>
+    {{ form.description.label }} {{ form.description }} <br><br>
+    {{ form.cost.label }} {{ form.cost }} <br><br>
+    
+    {{ form.submit }}
+</form>

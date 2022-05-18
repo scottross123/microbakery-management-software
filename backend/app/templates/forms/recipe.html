@@ -1,0 +1,13 @@
+<form method="POST" action="/save_recipe">
+    {{ form.crsf_token }}
+
+    {{ form.prep_time.label }} {{ form.prep_time }} <br><br>
+    {{ form.mix_time.label }} {{ form.mix_time }} <br><br>
+    {{ form.ddt.label }} {{ form.ddt }} <br><br>
+    {{ form.bulk_fermentation.label }} {{ form.bulk_fermentation }} <br><br>
+    {{ form.proof.label }} {{ form.proof }} <br><br>
+    {{ form.baking_time.label }} {{ form.baking_time }} <br><br>
+    {{ form.product_id.label }} {{ form.baking_time }} <br><br>
+    
+    {{ form.submit }}
+</form>

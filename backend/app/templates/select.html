@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Microbakery Database</title>
+    </head>
+    <body>
+        <div id="select-record-form">
+            <form method="POST" action="/select">
+                {{ form.crsf_token }}
+            
+                {{ form.table_name.label }} {{ form.table_name }} <br><br>
+                {{ form.id.label }} {{ form.id }} <br><br>
+                
+                {{ form.submit }}
+            </form>
+        </div>
+
+        <div>
+            {% for message in get_flashed_messages() %}
+                {{ message }}
+            {% endfor %}
+        </div>
+
+    </body>
+</html>

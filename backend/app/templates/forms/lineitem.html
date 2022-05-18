@@ -1,0 +1,9 @@
+<form method="POST" action="/save_lineitem">
+    {{ form.crsf_token }}
+
+    {{ form.quantity.label }} {{ form.quantity }} <br><br>
+    {{ form.order_id.label }} {{ form.order_id }} <br><br>
+    {{ form.product_id.label }} {{ form.product_id }} <br><br>
+    
+    {{ form.submit }}
+</form>
