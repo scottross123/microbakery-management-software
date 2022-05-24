@@ -1,3 +1,3 @@
-# Database Systems Term Project
+# Microbakery Managment Software
 
-Database for small bakery
+Full stack web app to manage database for a small bakery
