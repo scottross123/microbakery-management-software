@@ -1,0 +1,10 @@
+.menu{
+    width: 200px;
+    min-height: 90vh;
+    background-color: rgba(12, 190, 161, 0.808);
+    border-right: solid rgba(255, 255, 255, .1) 1px;
+}
+
+.test{
+    color: lightgray;
+}
