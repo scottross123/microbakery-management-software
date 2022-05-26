@@ -8,17 +8,21 @@ function Records() {
   const url = '/get_records?table=' + table
   const { data, loading, error } = useFetch(url, {})
 
+  if (error) {
+    console.log(error)
+  }
+
   return (
     <section className="section">
       {
         loading ? (
           <p>loading</p>
-        ) : (
-          <RecordsList records={data.records}/>
-        )
+        ) : Object.values(data).map(records => (
+          <RecordsList records={records}/>
+        ))
       }
     </section>
-  )
+  );
 } 
 
 export default Records;
