@@ -61,9 +61,3 @@ class SelectForm(FlaskForm):
 
 def product_query():
     return Product.query
-
-class AddItemsToOrderForm(FlaskForm):
-    order_id = IntegerField('ID of order you want to add items to?', validators=[InputRequired()])
-    product = QuerySelectField('Pick a product to add to order', query_factory=product_query, get_label='id')
-    quantity = IntegerField('How many items?', validators=[InputRequired()])
-    submit = SubmitField('Confirm!')
