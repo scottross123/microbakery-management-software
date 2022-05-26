@@ -8,13 +8,15 @@ function Records() {
   const url = '/get_records?table=' + table
   const { data, loading, error } = useFetch(url, {})
 
-  console.log('data in records.js ' + data.records)
-
-  return loading ? (
-    <div>loading</div>
-    ) : (
+  return (
     <section className="section">
-      <RecordsList records={data.records}/>
+      {
+        loading ? (
+          <p>loading</p>
+        ) : (
+          <RecordsList records={data.records}/>
+        )
+      }
     </section>
   )
 } 
