@@ -2,8 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import Topbar from './components/topbar/Topbar';
-import Tables from './components/Tables';
-import Orders from './pages/Orders';
+import Records from './pages/Records';
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
           </div>
           
           <div>
-            <Orders/>
+            <Records/>
           </div>
         </div>
       </div>

@@ -16,13 +16,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start-js": "react-scripts start",
-    "start": "npm run css-watch",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "css-build": "node-sass --omit-source-map-url sass/mystyles.scss css/mystyles.css",
-    "css-watch": "npm run css-build -- --watch"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
