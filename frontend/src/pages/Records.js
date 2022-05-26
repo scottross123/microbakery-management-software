@@ -1,5 +1,5 @@
 import { useState, useEffect, useReducer } from 'react';
-import RecordsList from './components/RecordsList';
+import RecordList from './components/RecordList';
 import useFetch from '../hooks/useFetch';
 
 function Records() {
@@ -18,7 +18,7 @@ function Records() {
         loading ? (
           <p>loading</p>
         ) : Object.values(data).map(records => (
-          <RecordsList records={records}/>
+          <RecordList records={records}/>
         ))
       }
     </section>
