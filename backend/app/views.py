@@ -84,7 +84,6 @@ def select():
 @blueprint.route("/get_records")
 def get_table():
     table = request.args.get("table", type=str)
-    print(table)
 
     records_list = table_list[table].query.all()
     records = []

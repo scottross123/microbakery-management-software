@@ -1,7 +1,6 @@
-import RecordActions from "./RecordActions";
-
 function RecordItem(props) {
     const { record } = props;
+    const { updateEditable } = props;
 
     return (
         <tr>
@@ -11,7 +10,11 @@ function RecordItem(props) {
                 ))
             }
 
-            <RecordActions/>
+            <td>
+                <button>info</button>
+                <button onClick={() => updateEditable(record.id)}>edit</button>
+                <button>del</button>
+            </td>
         </tr>
     );
 }

@@ -1,7 +1,14 @@
+import { useState } from 'react';
+import EditableItem from './EditableItem.js';
 import RecordItem from './RecordItem.js';
 
 function RecordList(props) {
     const { records } = props;
+    const [editableId, setEditableId] = useState(null)
+
+    const updateEditable = (id) => {
+        setEditableId(id)
+    }
 
     return (
         <table className="table">
@@ -21,7 +28,11 @@ function RecordList(props) {
             <tbody>
                 {
                     records.map((record) => (
-                        <RecordItem record={record}/>
+                        editableId === record.id ? (
+                            <EditableItem record={record} updateEditable={updateEditable}/>
+                        ) : (
+                            <RecordItem record={record} updateEditable={updateEditable}/>
+                        )
                     ))
                 }
             </tbody>

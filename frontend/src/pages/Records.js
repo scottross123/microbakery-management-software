@@ -3,7 +3,6 @@ import RecordList from './components/RecordList';
 import useFetch from '../hooks/useFetch';
 
 function Records() {
-
   const [table, setTable] = useState('order')
   const url = '/get_records?table=' + table
   const { data, loading, error } = useFetch(url, {})
@@ -14,13 +13,11 @@ function Records() {
 
   return (
     <section className="section">
-      {
-        loading ? (
-          <p>loading</p>
-        ) : Object.values(data).map(records => (
-          <RecordList records={records}/>
-        ))
-      }
+      {loading ? (
+        <p>loading</p>
+      ) : Object.values(data).map(records => (
+        <RecordList records={records}/>
+      ))}
     </section>
   );
 } 

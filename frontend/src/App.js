@@ -1,8 +1,8 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import Topbar from './components/topbar/Topbar';
 import Records from './pages/Records';
+import useFetch from './hooks/useFetch';
 
 function App() {
   return (
