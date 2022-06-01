@@ -1,9 +1,8 @@
-function App() {
-  return (
-    <div>
-      sup
-    </div>
-  );
-}
+import { ChakraProvider, Tab, Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react"
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
-export default App;
+export const App = () => (
+  <ChakraProvider>
+
+  </ChakraProvider>
+)
