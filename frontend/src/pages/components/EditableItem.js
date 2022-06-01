@@ -18,7 +18,7 @@ function EditableItem(props) {
         updateEditable(null)
     }
 
-    const handleSave = (event) => {
+    const handleSave = (event, new_record) => {
         // do save shit
         updateEditable(null)
     }

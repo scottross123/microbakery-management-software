@@ -102,3 +102,9 @@ def get_types():
     print(types)
 
     return jsonify({'types': types})
+
+@blueprint.route("/save_record")
+def save():
+    table = request.args.get("table", type=str)
+
+    

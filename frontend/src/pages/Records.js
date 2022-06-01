@@ -13,11 +13,11 @@ function Records() {
 
   return (
     <section className="section">
-      {loading ? (
+      { loading ? (
         <p>loading</p>
       ) : Object.values(data).map(records => (
         <RecordList records={records}/>
-      ))}
+      )) }
     </section>
   );
 } 
