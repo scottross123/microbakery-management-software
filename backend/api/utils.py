@@ -1,6 +1,5 @@
 # utility functions and dictionaries
 from .models import Customer, Order, LineItem, Product, Recipe, Ingredient, Flour
-from .forms import CustomerForm, OrderForm, LineItemForm, ProductForm, RecipeForm, IngredientForm, FlourForm
 
 def serialize(row):
     d = {}
@@ -20,14 +19,3 @@ table_list = {
     'ingredient': Ingredient,
     'flour': Flour,
 }
-
-'''
-form_list = {
-    'customer': CustomerForm(),
-    'order': OrderForm(),
-    'lineitem': LineItemForm(),
-    'product': ProductForm(),
-    'recipe': RecipeForm(),
-    'ingredient': IngredientForm(),
-    'flour': FlourForm(),
-}'''
