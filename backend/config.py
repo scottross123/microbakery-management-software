@@ -19,3 +19,4 @@ class Config():
     # flask config
     DEBUG = True
     TESTING = True
+    JSON_SORT_KEYS = False
