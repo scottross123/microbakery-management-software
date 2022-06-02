@@ -1,5 +1,4 @@
-import { ChakraProvider, Tab, Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { ChakraProvider } from "@chakra-ui/react"
 
 export const App = () => (
   <ChakraProvider>
