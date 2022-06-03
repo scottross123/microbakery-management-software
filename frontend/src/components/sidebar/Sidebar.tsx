@@ -1,8 +1,6 @@
 import {
      Flex, 
      Heading, 
-     Divider, 
-     Text,
      Accordion,
      AccordionItem,
      AccordionButton,
