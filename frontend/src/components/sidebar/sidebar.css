@@ -1,18 +1,3 @@
-.sidebar-item {
-    padding: .5em;
-    padding-left: 1em;
-    padding-right: 1em;
-    border-radius: 10px;
-}
-
-.sidebar-item p {
-    margin-left: .5em;
-}
-
-.sidebar-item:hover {
-    color: white;
-    background-color: olivedrab;
-} 
 
 .sidebar-item:not(:last-child) {
     margin-bottom: 1em;

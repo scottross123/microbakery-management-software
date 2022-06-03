@@ -7,23 +7,67 @@ import {
      AccordionItem,
      AccordionButton,
      AccordionPanel,
-     AccordionIcon, 
+     AccordionIcon,
+     Box, 
 } from "@chakra-ui/react"
 
 import { 
-    GiPerson, 
-    GiShoppingCart, 
-    GiSlicedBread, 
-    GiWheat, 
-    GiWaterMill, 
     GiHouse,
     GiShop,
     GiPieChart,
     GiCalendar,
+    GiThreeFriends, 
+    GiShoppingCart, 
+    GiSlicedBread, 
+    GiWheat, 
+    GiWaterMill, 
+    GiReceiveMoney,
+    GiPayMoney,
+    GiWoodenCrate,
+    GiPerson,
+    GiSettingsKnobs,
+    GiMailbox,
+    GiExitDoor,
 
 } from "react-icons/gi";
 import { SidebarItem } from "./SidebarItem";
+import { IconType } from 'react-icons';
 import './sidebar.css';
+
+type PanelItem = {
+    icon: IconType,
+    text: string,
+}
+
+const items: Record<string, Array<PanelItem>> = { 
+    'overview': [
+        {icon: GiHouse, text: 'home' },
+        {icon: GiPieChart, text: 'dashboard' },
+        {icon: GiShop, text: 'business' },
+        {icon: GiCalendar, text: 'calendar' },
+    ],
+
+    'manage': [
+        {icon: GiThreeFriends, text: 'customers' },
+        {icon: GiShoppingCart, text: 'orders' },
+        {icon: GiSlicedBread, text: 'products' },
+        {icon: GiWheat, text: 'ingredients' },
+        {icon: GiPieChart, text: 'suppliers' },
+    ],
+
+    'reports': [
+        {icon: GiReceiveMoney, text: 'sales' },
+        {icon: GiPayMoney, text: 'costs' },
+        {icon: GiWoodenCrate, text: 'inventory' },
+    ],
+
+    'settings': [
+        {icon: GiPerson, text: 'profile' },
+        {icon: GiSettingsKnobs, text: 'options' },
+        {icon: GiMailbox, text: 'contact' },
+        {icon: GiExitDoor, text: 'logout' },
+    ],
+};
 
 export const Sidebar = () => {
 
@@ -31,19 +75,19 @@ export const Sidebar = () => {
         <Flex
          backgroundColor='green.50'
          className="sidebar"
-         as="nav"
          w="15%"
+         h="100vh"
          pos="sticky"
          flexDir="column"
-         alignItems="center"
-         justifyContent="space-between"
+         justifyContent="flex-start"
          borderRight='1px'
         >
             <Flex
              flexDir="column"
+             w='100%'
             >
                 <Heading
-                 mt={25}
+                 mt={50}
                  mb={50}
                  alignSelf="center"
                  letterSpacing="tight"
@@ -56,82 +100,29 @@ export const Sidebar = () => {
              flexDir="column"
              align="flex-start"
              justifyContent="center"
+             as="nav"
+             w='100%'
             >
-                <Accordion>
-                    <AccordionItem>
-                        <AccordionButton>
-                            <Text
-                            alignSelf="center"
-                            letterSpacing="tight"
-                            >
-                                overiew
-                            </Text>
-                        </AccordionButton>
+                <Accordion w='100%'>
+                    { Object.entries(items).map((item, i) => 
+                        <AccordionItem>
+                            <AccordionButton _expanded={{ bg: 'olivedrab', color: 'white' }}>
+                                <Box
+                                alignSelf="center"
+                                letterSpacing="tight"
+                                w='100%'
+                                >
+                                    {item[0]}
+                                </Box>   
+                            </AccordionButton>
 
-                        <AccordionPanel>
-                            <SidebarItem icon={GiHouse} text='Home'/>
-                            <SidebarItem icon={GiPieChart} text='Dashboard'/>
-                            <SidebarItem icon={GiShop} text='Business'/>
-                            <SidebarItem icon={GiCalendar} text='Calendar'/>
+                        <AccordionPanel w='100%'>
+                            {item[1].map(({ icon, text }: PanelItem) => {
+                                return <SidebarItem icon={icon} text={text}/>
+                            })}
                         </AccordionPanel>
-                    </AccordionItem>
-
-                    <AccordionItem>
-                        <AccordionButton _expanded={{ bg: 'olivedrab', color: 'white' }}>
-                            <Text
-                            alignSelf="center"
-                            letterSpacing="tight"
-                            >
-                                manage
-                            </Text>
-                        </AccordionButton>
-
-                        <AccordionPanel>
-                            <SidebarItem icon={GiPerson} text='Customers'/>
-                            <SidebarItem icon={GiShoppingCart} text='Orders'/>
-                            <SidebarItem icon={GiSlicedBread} text='Products'/>
-                            <SidebarItem icon={GiWheat} text='Ingredients'/>
-                            <SidebarItem icon={GiWaterMill} text='Suppliers'/>
-                        </AccordionPanel>
-                    </AccordionItem>
-
-                    <AccordionItem>
-                        <AccordionButton>
-                            <Text
-                            alignSelf="center"
-                            letterSpacing="tight"
-                            >
-                                reports
-                            </Text>
-                        </AccordionButton>
-
-                        <AccordionPanel>
-                            <SidebarItem icon={GiPerson} text='Customers'/>
-                            <SidebarItem icon={GiShoppingCart} text='Orders'/>
-                            <SidebarItem icon={GiSlicedBread} text='Products'/>
-                            <SidebarItem icon={GiWheat} text='Ingredients'/>
-                            <SidebarItem icon={GiWaterMill} text='Suppliers'/>
-                        </AccordionPanel>
-                    </AccordionItem>
-
-                    <AccordionItem>
-                        <AccordionButton>
-                            <Text
-                            alignSelf="center"
-                            letterSpacing="tight"
-                            >
-                                settings
-                            </Text>
-                        </AccordionButton>
-
-                        <AccordionPanel>
-                            <SidebarItem icon={GiPerson} text='Customers'/>
-                            <SidebarItem icon={GiShoppingCart} text='Orders'/>
-                            <SidebarItem icon={GiSlicedBread} text='Products'/>
-                            <SidebarItem icon={GiWheat} text='Ingredients'/>
-                            <SidebarItem icon={GiWaterMill} text='Suppliers'/>
-                        </AccordionPanel>
-                    </AccordionItem>
+                    </AccordionItem> 
+                    )}
                 </Accordion>
             
             </Flex>

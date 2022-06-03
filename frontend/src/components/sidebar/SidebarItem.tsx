@@ -11,12 +11,21 @@ export const SidebarItem = (props : SidebarItemProps) => {
     const { text } = props;
 
     return (
-        <Flex className='sidebar-item'>
+        <Flex 
+         className='sidebar-item'
+         _hover={{ textDecor: 'none', color: 'olivedrab' }}
+         justifyContent="center"
+         w="100%"
+         >
             <Link alignSelf="center">
                 <Icon as={icon} fontSize="3xl" />
             </Link>
 
-            <Link textDecoration='none' alignSelf="center" >
+            <Link 
+             textDecoration='none' 
+             ml='.5em'
+             alignSelf="center" 
+            >
                 <Text>{text}</Text>
             </Link>
         </Flex>
