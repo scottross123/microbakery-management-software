@@ -10,6 +10,7 @@ import {
     TableCaption,
     TableContainer,
   } from '@chakra-ui/react';
+import DataTableItem from './DataTableItem';
 
 type DataTableListProps<Object> = {
     records: Array<Object>
@@ -29,9 +30,9 @@ const DataTableList = (props: DataTableListProps<Object>) => {
             </Thead>
 
             <Tbody>
-                <Tr>
-                    {}
-                </Tr>
+                { records.map((record) => (
+                    <DataTableItem record={record} />
+                ))}
             </Tbody>
         </Table>
     )

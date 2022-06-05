@@ -1,6 +1,6 @@
 import flask
 from flask import Blueprint, request, g, flash, jsonify
-import app
+import api
 from . import db
 from .models import Customer, Order, LineItem, Product, Recipe, Ingredient, Flour
 from .utils import serialize, table_list
