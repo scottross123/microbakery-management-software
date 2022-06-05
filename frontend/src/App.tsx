@@ -18,7 +18,7 @@ export const App = () => (
        w='85%'
        flexDir='column'
       >
-        <Topbar page={'Home'}/>
+        <Topbar page={'Home'} />
 
         <Home/>
       </Flex>
