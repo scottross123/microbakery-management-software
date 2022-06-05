@@ -12,3 +12,6 @@ admin should be able to use recipe builder to build recipes for new products
 database needs teaking, add supplier table, remove flour table, modify some attributes
 add user table and user authentication with flask
 
+todo:
+maybe use userouter hook for routing instead of routerprovider component
+remove repeated flex component from each page comnent and put it in app.tsx 
