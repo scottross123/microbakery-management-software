@@ -1,5 +1,6 @@
-import { Flex, Link, Icon, Text } from "@chakra-ui/react";
+import { Flex, Icon, Text, Box } from "@chakra-ui/react";
 import { IconType } from 'react-icons';
+import { NavLink } from 'react-router-dom';
 
 type SidebarItemProps = {
     icon: IconType;
@@ -10,24 +11,37 @@ export const SidebarItem = (props : SidebarItemProps) => {
     const { icon } = props;
     const { text } = props;
 
-    return (
-        <Flex 
-         className='sidebar-item'
-         _hover={{ textDecor: 'none', color: 'olivedrab' }}
-         justifyContent="center"
-         w="100%"
-         >
-            <Link alignSelf="center">
-                <Icon as={icon} fontSize="3xl" />
-            </Link>
+    const activeStyle = {
+        textDecor: 'none', 
+        color: 'olivedrab',
+    }
 
-            <Link 
-             textDecoration='none' 
-             ml='.5em'
-             alignSelf="center" 
+    return (
+        <NavLink
+        to={text}
+        style={
+            ({ isActive }) =>
+            isActive ? activeStyle : {}
+        }
+        >    
+            <Flex 
+            className='sidebar-item'
+            _hover={activeStyle}
+            justifyContent="center"
+            w="100%"
             >
-                <Text>{text}</Text>
-            </Link>
-        </Flex>
+                <Box alignSelf="center">
+                    <Icon as={icon} fontSize="3xl" />
+                </Box>
+
+                <Box
+                textDecoration='none' 
+                ml='.5em'
+                alignSelf="center" 
+                >
+                    <Text>{text}</Text>
+                </Box>
+            </Flex>
+        </NavLink>
     )
 }

@@ -30,6 +30,7 @@ import {
 } from "react-icons/gi";
 import { SidebarItem } from "./SidebarItem";
 import { IconType } from 'react-icons';
+import { } from '../../pages/exports';
 import './sidebar.css';
 
 type PanelItem = {
@@ -39,31 +40,31 @@ type PanelItem = {
 
 const items: Record<string, Array<PanelItem>> = { 
     'overview': [
-        {icon: GiHouse, text: 'home' },
-        {icon: GiPieChart, text: 'dashboard' },
-        {icon: GiShop, text: 'business' },
-        {icon: GiCalendar, text: 'calendar' },
+        { icon: GiHouse, text: 'home' },
+        { icon: GiPieChart, text: 'dashboard' },
+        { icon: GiShop, text: 'business' },
+        { icon: GiCalendar, text: 'calendar' },
     ],
 
     'manage': [
-        {icon: GiThreeFriends, text: 'customers' },
-        {icon: GiShoppingCart, text: 'orders' },
-        {icon: GiSlicedBread, text: 'products' },
-        {icon: GiWheat, text: 'ingredients' },
-        {icon: GiWaterMill, text: 'suppliers' },
+        { icon: GiThreeFriends, text: 'customers' },
+        { icon: GiShoppingCart, text: 'orders' },
+        { icon: GiSlicedBread, text: 'products' },
+        { icon: GiWheat, text: 'ingredients' },
+        { icon: GiWaterMill, text: 'suppliers' },
     ],
 
     'reports': [
-        {icon: GiReceiveMoney, text: 'sales' },
-        {icon: GiPayMoney, text: 'costs' },
-        {icon: GiWoodenCrate, text: 'inventory' },
+        { icon: GiReceiveMoney, text: 'sales' },
+        { icon: GiPayMoney, text: 'costs' },
+        { icon: GiWoodenCrate, text: 'inventory' },
     ],
 
     'settings': [
-        {icon: GiPerson, text: 'profile' },
-        {icon: GiSettingsKnobs, text: 'options' },
-        {icon: GiMailbox, text: 'contact' },
-        {icon: GiExitDoor, text: 'logout' },
+        { icon: GiPerson, text: 'profile' },
+        { icon: GiSettingsKnobs, text: 'options' },
+        { icon: GiMailbox, text: 'contact' },
+        { icon: GiExitDoor, text: 'logout' },
     ],
 };
 

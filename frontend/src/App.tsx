@@ -1,27 +1,29 @@
 import { ChakraProvider, Flex } from "@chakra-ui/react"
 import Sidebar from "./components/sidebar/Sidebar";
 import  Topbar from "./components/topbar/Topbar";
-import Home from './pages/Home';
+import RouterProvider from "./routes/RouterProvider";
 
-export const App = () => (
-  <ChakraProvider>
-    <Flex
-     h='100vh'
+export const App = () => {
+  
 
-     flexDir='row'
-     overflow='hiden'
-    >
-      <Sidebar/>
-
+  return (
+    <ChakraProvider>
       <Flex
-       className='bruh'
-       w='85%'
-       flexDir='column'
+        h='100vh'
+        flexDir='row'
+        overflow='hiden'
       >
-        <Topbar page={'Home'} />
+        <Sidebar/>
 
-        <Home/>
+        <Flex
+          w='85%'
+          flexDir='column'
+        >
+          <Topbar />
+
+          <RouterProvider />
+        </Flex>
       </Flex>
-    </Flex>
-  </ChakraProvider>
-)
+    </ChakraProvider>
+  );
+}

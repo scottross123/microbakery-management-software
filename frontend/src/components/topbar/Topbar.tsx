@@ -1,13 +1,16 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
+import { stringify } from "querystring";
+import { useLocation } from 'react-router-dom';
 
 type TopbarProps = {
-    page: string;
     action?: string;
 }
 
 const Topbar = (props: TopbarProps) => {
-    const { page } = props;
     const { action } = props;
+
+    const { pathname } = useLocation();
+    const page = pathname.charAt(1).toUpperCase() + pathname.slice(2);
 
     return (
         <Flex
@@ -25,7 +28,9 @@ const Topbar = (props: TopbarProps) => {
              left='0'
              bottom='0'
             >
-                <Text fontSize='2xl'>{page}</Text>
+                <Text fontSize='2xl'>
+                    { page }
+                </Text>
             </Box>
 
             <Box
@@ -34,7 +39,9 @@ const Topbar = (props: TopbarProps) => {
              position='absolute'
              right='0'
             >
-                <Text fontSize='2xl'>{action}</Text>
+                <Text fontSize='2xl'>
+                    { action ? action : '' }
+                </Text>
             </Box>
         </Flex>
     );
