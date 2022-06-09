@@ -10,6 +10,7 @@ import {
     TableCaption,
     TableContainer,
   } from '@chakra-ui/react';
+import { capitalize } from '../../../utils/capitalize';
 import DataTableItem from './DataTableItem';
 
 type DataTableListProps<Object> = {
@@ -18,14 +19,17 @@ type DataTableListProps<Object> = {
 
 const DataTableList = (props: DataTableListProps<Object>) => {
     const { records } = props;
+    console.log(capitalize('bruh'))
 
     return (
         <Table variant='simple'>
             <Thead>
                 <Tr>
-                    { Object.keys(records[0]).map((key) => (
-                        <Td>{ key }</Td>
+                    { Object.keys(records[0]).slice(1).map((key) => (
+                        <Td>{capitalize(key)}</Td>
                     ))}
+
+                    <Td></Td>
                 </Tr>
             </Thead>
 

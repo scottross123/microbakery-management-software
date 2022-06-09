@@ -17,14 +17,14 @@ import {
     GiThreeFriends, 
     GiShoppingCart, 
     GiSlicedBread, 
-    GiWheat, 
+    GiFlour, 
     GiWaterMill, 
     GiReceiveMoney,
     GiPayMoney,
     GiWoodenCrate,
     GiPerson,
     GiSettingsKnobs,
-    GiMailbox,
+    GiEnvelope,
     GiExitDoor,
 
 } from "react-icons/gi";
@@ -50,7 +50,7 @@ const items: Record<string, Array<PanelItem>> = {
         { icon: GiThreeFriends, text: 'customers' },
         { icon: GiShoppingCart, text: 'orders' },
         { icon: GiSlicedBread, text: 'products' },
-        { icon: GiWheat, text: 'ingredients' },
+        { icon: GiFlour, text: 'ingredients' },
         { icon: GiWaterMill, text: 'suppliers' },
     ],
 
@@ -63,7 +63,7 @@ const items: Record<string, Array<PanelItem>> = {
     'settings': [
         { icon: GiPerson, text: 'profile' },
         { icon: GiSettingsKnobs, text: 'options' },
-        { icon: GiMailbox, text: 'contact' },
+        { icon: GiEnvelope, text: 'contact' },
         { icon: GiExitDoor, text: 'logout' },
     ],
 };
