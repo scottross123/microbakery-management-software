@@ -1,5 +1,4 @@
 import { Button, IconButton, Stack, Td, Tooltip, Tr, useDisclosure } from '@chakra-ui/react';
-import { detachClipboardStubFromView } from '@testing-library/user-event/dist/types/utils';
 import React, { ReactElement } from 'react';
 import { GiFountainPen, GiOpenBook, GiTrashCan } from 'react-icons/gi';
 import EditRecord from './EditRecord';
@@ -23,8 +22,10 @@ const actionButtons: ActionButton[] = [
 const DataTableItem = (props: DataTableItemProps) => {
     const { record } = props;
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure();
+    const { isOpen: isOpenAlert, onOpen: onOpenAlert, onClose: onCloseAlert } = useDisclosure();
 
+    const cancelRef = React.useRef(null);
     return (
         <Tr>
             { Object.values(record).slice(1).map((value) => (
@@ -41,10 +42,11 @@ const DataTableItem = (props: DataTableItemProps) => {
                             variant='ghost' 
                             icon={icon} 
                             fontSize="3xl"
-                            onClick={onOpen} 
+                            onClick={label === 'Edit' ? onOpenModal : onOpenAlert} 
                             />
                         </Tooltip>
-                        <EditRecord isOpen={isOpen} onClose={onClose}/>
+                        <EditRecord isOpen={isOpenModal} onClose={onCloseModal}/>
+                        <DeleteRecord isOpen={isOpenAlert} onClose={onCloseAlert} cancelRef={cancelRef}/>
                         </> )
                     })}
                 </Stack>
