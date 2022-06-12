@@ -1,31 +1,33 @@
 import { Button, IconButton, Stack, Td, Tooltip, Tr, useDisclosure } from '@chakra-ui/react';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { GiFountainPen, GiOpenBook, GiTrashCan } from 'react-icons/gi';
 import EditRecord from './EditRecord';
 import DeleteRecord from './DeleteRecord';
 
 type DataTableItemProps = {
-    record: Object;
+    record: Object,
+    updateDisclosure: ((component: 'modal' | 'alert') => void),
 }
 
 type ActionButton = {
     label: string,
     icon: ReactElement,
+    component: 'modal' | 'alert' | 'detailPage'
 }
 
-const actionButtons: ActionButton[] = [
-    { label: 'Details', icon: <GiOpenBook />},
-    { label: 'Edit', icon: <GiFountainPen  />},
-    { label: 'Delete', icon: <GiTrashCan />},
-]
-
 const DataTableItem = (props: DataTableItemProps) => {
-    const { record } = props;
+    const { record, updateDisclosure } = props;
 
-    const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure();
-    const { isOpen: isOpenAlert, onOpen: onOpenAlert, onClose: onCloseAlert } = useDisclosure();
+    const handleClick = (component: ActionButton['component']) => {
+        component === 'detailPage' ? 'do other shit' : updateDisclosure(component);
+    }
 
-    const cancelRef = React.useRef(null);
+    const actionButtons: ActionButton[] = [
+        { label: 'Details', icon: <GiOpenBook />, component: 'detailPage' },
+        { label: 'Edit', icon: <GiFountainPen  />, component: 'modal' },
+        { label: 'Delete', icon: <GiTrashCan />, component: 'alert' },
+    ];    
+
     return (
         <Tr>
             { Object.values(record).slice(1).map((value) => (
@@ -34,7 +36,7 @@ const DataTableItem = (props: DataTableItemProps) => {
 
             <Td>
                 <Stack direction='row' spacing={4} align='center'>
-                    { actionButtons.map(({ label, icon }: ActionButton ) => {
+                    { actionButtons.map(({ label, icon, component }: ActionButton ) => {
                         return ( <>
                         <Tooltip hasArrow label={label} placement='top'>
                             <IconButton 
@@ -42,11 +44,10 @@ const DataTableItem = (props: DataTableItemProps) => {
                             variant='ghost' 
                             icon={icon} 
                             fontSize="3xl"
-                            onClick={label === 'Edit' ? onOpenModal : onOpenAlert} 
+                            onClick={() => handleClick(component)} 
                             />
-                        </Tooltip>
-                        <EditRecord isOpen={isOpenModal} onClose={onCloseModal}/>
-                        <DeleteRecord isOpen={isOpenAlert} onClose={onCloseAlert} cancelRef={cancelRef}/>
+                     ;   </Tooltip>
+
                         </> )
                     })}
                 </Stack>

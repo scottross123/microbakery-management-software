@@ -3,7 +3,7 @@ import { Flex } from "@chakra-ui/react";
 const Home = () => {
   return (
     <Flex
-     justifyContent='center'
+      justifyContent='center'
     >
         home page
     </Flex>
