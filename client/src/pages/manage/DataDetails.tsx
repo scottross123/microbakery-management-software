@@ -1,11 +1,17 @@
 import { Flex } from '@chakra-ui/react';
 
-const DataDetails = () => {
+type DataDetailsProps = {
+    selectedId: number
+}
+
+const DataDetails = (props: DataDetailsProps) => {
+    const { selectedId } = props;
+
     return (
         <Flex
          justifyContent='center'
         >
-            details
+            details for { selectedId }
         </Flex>
     )
 }

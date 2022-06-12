@@ -1,12 +1,12 @@
-import { Button, IconButton, Stack, Td, Tooltip, Tr, useDisclosure } from '@chakra-ui/react';
-import React, { ReactElement, ReactNode } from 'react';
+import { IconButton, Stack, Td, Tooltip, Tr, } from '@chakra-ui/react';
+import { ReactElement } from 'react';
 import { GiFountainPen, GiOpenBook, GiTrashCan } from 'react-icons/gi';
-import EditRecord from './EditRecord';
-import DeleteRecord from './DeleteRecord';
+import { useNavigate } from 'react-router-dom';
 
 type DataTableItemProps = {
-    record: Object,
+    record: { id: number, [key: string]: any },
     updateDisclosure: ((component: 'modal' | 'alert') => void),
+    updateSelectedId: ((id: number) => void),
 }
 
 type ActionButton = {
@@ -16,10 +16,12 @@ type ActionButton = {
 }
 
 const DataTableItem = (props: DataTableItemProps) => {
-    const { record, updateDisclosure } = props;
+    const { record, updateDisclosure, updateSelectedId } = props;
+    const navigate = useNavigate();
 
     const handleClick = (component: ActionButton['component']) => {
-        component === 'detailPage' ? 'do other shit' : updateDisclosure(component);
+        component === 'detailPage' ? navigate('details') : updateDisclosure(component);
+        updateSelectedId(record.id)
     }
 
     const actionButtons: ActionButton[] = [
@@ -31,7 +33,7 @@ const DataTableItem = (props: DataTableItemProps) => {
     return (
         <Tr>
             { Object.values(record).slice(1).map((value) => (
-                <Td>{ value }</Td>
+                <Td>{value}</Td>
             ))}
 
             <Td>
@@ -46,8 +48,7 @@ const DataTableItem = (props: DataTableItemProps) => {
                             fontSize="3xl"
                             onClick={() => handleClick(component)} 
                             />
-                     ;   </Tooltip>
-
+                        </Tooltip>
                         </> )
                     })}
                 </Stack>

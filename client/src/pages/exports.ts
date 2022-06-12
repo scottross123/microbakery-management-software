@@ -6,6 +6,7 @@ export { default as Business } from './overview/Business';
 export { default as Calendar } from './overview/Calendar';
 
 export { default as Table } from './manage/DataTable';
+export { default as Details } from './manage/DataDetails';
 
 export { default as Costs } from './reports/Costs';
 export { default as Inventory } from './reports/Inventory';

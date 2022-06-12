@@ -45,3 +45,5 @@ export const SidebarItem = (props : SidebarItemProps) => {
         </NavLink>
     )
 }
+
+// to-do: split this into two components, Sidebar.tsx for UI layout and SidebarList.tsx for functionality 

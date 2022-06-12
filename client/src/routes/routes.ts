@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Home, Dashboard, Business, Calendar, Table, Sales, Costs, Inventory, Profile, Options, Contact } from "../pages/exports";
+import { Home, Dashboard, Business, Calendar, Table, Sales, Costs, Inventory, Profile, Options, Contact, Details } from "../pages/exports";
 
 export type route = {
     path: string,
@@ -59,6 +59,11 @@ const routes: route[] = [
     },
 
     {
+        path: 'customers/details',
+        element: Details,
+    },
+
+    {
         path: '/costs',
         element: Costs,
     },
@@ -91,3 +96,5 @@ const routes: route[] = [
 ]
 
 export default routes;
+
+// maybe try useroutes hook?
