@@ -18,3 +18,7 @@ remove repeated flex component from each page comnent and put it in app.tsx <br 
 
 bugs:<br />
 reloading manage page results in undefined error, possible solution is to implement useRef?<br />
+
+future plans:<br />
+user login<br />
+rewrite backend in java<br />
