@@ -1,20 +1,20 @@
-site should have sidebar for navigation
-user authnetication and login (possible admin/customer login in the future)
-site should have unique theme built with chakra ui
-site should have light adn dark mode
+site should have sidebar for navigation <br />
+user authnetication and login (possible admin/customer login in the future) <br />
+site should have unique theme built with chakra ui <br />
+site should have light adn dark mode <br />
 
-admin should be able to manage all database tables, including adding, deleting, updating records
-admin should be able to see speciial reports like sales for the month, costs, see charts
-admin should be able to modifiy inventory
-admin should recieve notifications on dashboard for upcoming orders or items low in inventory
-admin should be able to use recipe builder to build recipes for new products
+admin should be able to manage all database tables, including adding, deleting, updating records <br />
+admin should be able to see speciial reports like sales for the month, costs, see charts<br />
+admin should be able to modifiy inventory<br />
+admin should recieve notifications on dashboard for upcoming orders or items low in inventory<br />
+admin should be able to use recipe builder to build recipes for new products<br /><br />
 
-database needs teaking, add supplier table, remove flour table, modify some attributes
-add user table and user authentication with flask
+database needs teaking, add supplier table, remove flour table, modify some attributes<br />
+add user table and user authentication with flask<br /><br />
 
-todo:
-maybe use userouter hook for routing instead of routerprovider component
-remove repeated flex component from each page comnent and put it in app.tsx 
+todo:<br />
+maybe use userouter hook for routing instead of routerprovider component<br />
+remove repeated flex component from each page comnent and put it in app.tsx <br /><br />
 
-bugs:
-reloading manage page results in undefined error, possible solution is to implement useRef?
+bugs:<br />
+reloading manage page results in undefined error, possible solution is to implement useRef?<br />
