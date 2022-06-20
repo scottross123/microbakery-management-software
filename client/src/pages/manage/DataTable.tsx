@@ -16,27 +16,40 @@ import Loading from '../Loading';
 import { useFetch } from '../../hooks/useFetch';
 import DataTableList from './components/DataTableList';
 import React from 'react';
+import { useQuery } from 'react-query';
 
 type DataTableProps = {
     table: string;
 }
 
+type Record = {
+    id: number,
+    [key: string]: any
+}
+
+const fetchRecords = async (table: string): Promise<Record[]> => {
+    const response = await fetch(`/get_records?table=${table}`)
+    return response.json();
+}
+
 const DataTable = (props: DataTableProps) => {
     const { table } = props;
-    const url: string = '/get_records?table=' + table;
-    const { data, loading, error } = useFetch(url, {});
+  
+    const { data, isLoading, error } = useQuery<Record[], Error>('records', () => fetchRecords(table));
+
+    console.log(data);
 
     error && console.log(error);
   
     return (
         <React.Fragment>
-            { loading ? (
+            { isLoading ? (
                 <Loading />
             ) : ( 
             <TableContainer
              display='block'
             >
-                <DataTableList records={data.records}/>
+                <DataTableList records={data} />
             </TableContainer>
             )}
         </React.Fragment>

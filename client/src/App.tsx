@@ -3,35 +3,40 @@ import Sidebar from "./components/sidebar/Sidebar";
 import  Topbar from "./components/topbar/Topbar";
 import RouterProvider from "./routes/RouterProvider";
 import theme from './theme/theme';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools'
+
+const queryClient = new QueryClient();
  
 export const App = () => {
-  
-
   return (
-    <ChakraProvider theme={theme}>
-      <Flex
-        h='100vh'
-        flexDir='row'
-      >
-        <Sidebar/>
-
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
         <Flex
-          w='85%'
-          flexDir='column'
+          h='100vh'
+          flexDir='row'
         >
-
-          <Topbar />
+          <Sidebar/>
 
           <Flex
-           justifyContent='center'
-           alignItems='flex-start'
-           h='100%'
-           overflowY='scroll'
+            w='85%'
+            flexDir='column'
           >
-            <RouterProvider/>
+
+            <Topbar />
+
+            <Flex
+              justifyContent='center'
+              alignItems='flex-start'
+              h='100%'
+              overflowY='scroll'
+            >
+              <RouterProvider/>
+            </Flex>
           </Flex>
         </Flex>
-      </Flex>
-    </ChakraProvider>
+      </ChakraProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
