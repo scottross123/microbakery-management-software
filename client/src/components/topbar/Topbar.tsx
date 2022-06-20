@@ -29,7 +29,7 @@ const Topbar = (props: TopbarProps) => {
             <Box
              m='.5em'
             >
-                { action ? action : 'bruh' }
+                { action ? action : '' }
             </Box>
         </Flex>
     );
