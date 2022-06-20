@@ -7,6 +7,7 @@ import {
      AccordionPanel,
      AccordionIcon,
      Box, 
+     useTheme,
 } from "@chakra-ui/react"
 
 import { 
@@ -72,7 +73,7 @@ export const Sidebar = () => {
 
     return (
         <Flex
-         backgroundColor='green.50'
+         background='brand.main'
          className="sidebar"
          w="15%"
          h="100vh"
@@ -105,7 +106,7 @@ export const Sidebar = () => {
                 <Accordion w='100%'>
                     { Object.entries(items).map((item, i) => 
                         <AccordionItem>
-                            <AccordionButton _expanded={{ bg: 'olivedrab', color: 'white' }}>
+                            <AccordionButton _expanded={{ bg: 'main.700' }}>
                                 <Box
                                 alignSelf="center"
                                 letterSpacing="tight"

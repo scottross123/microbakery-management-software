@@ -14,7 +14,7 @@ const Topbar = (props: TopbarProps) => {
 
     return (
         <Flex
-         backgroundColor='green.50'
+         backgroundColor='brand.main'
          borderBottom='1px'
          flexDir='row'
         >

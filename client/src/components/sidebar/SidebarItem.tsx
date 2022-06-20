@@ -13,7 +13,7 @@ export const SidebarItem = (props : SidebarItemProps) => {
 
     const activeStyle = {
         textDecor: 'none', 
-        color: 'olivedrab',
+        color: '#a48b73',
     }
 
     return (
