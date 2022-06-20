@@ -1,43 +1,28 @@
 import { IconButton, Stack, Td, Tooltip, Tr, } from '@chakra-ui/react';
 import { ReactElement } from 'react';
-import { GiFountainPen, GiOpenBook, GiTrashCan } from 'react-icons/gi';
-import { useNavigate } from 'react-router-dom';
+import { GiSave, GiCancel, } from 'react-icons/gi';
 
 type DataTableItemProps = {
     record: { id: number, [key: string]: any },
-    updateDeletable: ((id: number) => void),
-    updateEditable: ((id: number) => void),
+    updateEditable: ((id: number | undefined) => void),
 }
 
 type ActionButton = {
-    label: string,
+    label: 'Save' | 'Cancel',
     icon: ReactElement,
 }
 
 const DataTableItem = (props: DataTableItemProps) => {
-    const { record, updateDeletable, updateEditable } = props;
-    const navigate = useNavigate();
+    const { record, updateEditable } = props;
 
-    const handleClick = (component: ActionButton['label']) => {
-        switch (component) {
-            case 'Details':
-                alert('oops, i havent implemented this feature yet 😬');
-                break;        
-            case 'Delete':
-                updateDeletable(record.id)
-                break;
-            case 'Edit':
-                updateEditable(record.id)
-                break;
-            default:
-                throw new Error();
-        }
+    const handleClick = (label: 'Save' | 'Cancel') => {
+        console.log(label);
+        updateEditable(undefined);
     }
 
     const actionButtons: ActionButton[] = [
-        { label: 'Details', icon: <GiOpenBook /> },
-        { label: 'Edit', icon: <GiFountainPen  /> },
-        { label: 'Delete', icon: <GiTrashCan /> },
+        { label: 'Save', icon: <GiSave /> },
+        { label: 'Cancel', icon: <GiCancel /> },
     ];    
 
     return (

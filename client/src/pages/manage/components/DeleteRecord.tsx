@@ -13,11 +13,11 @@ type DeleteRecordProps<FocusableElement> = {
     isOpen: boolean,
     onClose: (() => void),
     cancelRef: RefObject<FocusableElement>,
-    selectedId: number | undefined,
+    deletableId: number | undefined,
 }
 
 const DeleteRecord = (props: DeleteRecordProps<HTMLButtonElement>) => {
-    const { isOpen, onClose, cancelRef, selectedId } = props;
+    const { isOpen, onClose, cancelRef, deletableId } = props;
 
     return (
         <AlertDialog
@@ -32,7 +32,7 @@ const DeleteRecord = (props: DeleteRecordProps<HTMLButtonElement>) => {
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Are you sure you want to delete record id { selectedId }? You can't recover this record once it's been deleted.
+              Are you sure you want to delete record id { deletableId }? You can't recover this record once it's been deleted.
             </AlertDialogBody>
 
             <AlertDialogFooter>
