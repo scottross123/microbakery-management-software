@@ -12,6 +12,7 @@ import {
     useDisclosure,
   } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
+import { useFetch } from '../../../hooks/useFetch';
 import { capitalize } from '../../../utils/capitalize';
 import DataTableItem from './DataTableItem';
 import DeleteRecord from './DeleteRecord';
@@ -32,6 +33,7 @@ const DataTableList = (props: DataTableListProps<Object>) => {
     const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
     const [ deletableId, setDeletableId ] = useState<number | undefined>();
     const [ editableId, setEditableId ] = useState<number | undefined>();
+    const { data, loading, error } = useFetch('/get_attribute_types?table=order', {});
 
     const updateDeletable = (id: typeof deletableId) => {
         setDeletableId(id)
@@ -59,7 +61,7 @@ const DataTableList = (props: DataTableListProps<Object>) => {
             <Tbody>
                 { records.map((record) => (
                     editableId === record.id ? ( 
-                        <EditableItem record={record}  updateEditable={updateEditable}/>
+                        <EditableItem record={record}  updateEditable={updateEditable} types={data.types}/>
                     ) : (
                         <DataTableItem record={record} updateEditable={updateEditable} updateDeletable={updateDeletable} />
                     )

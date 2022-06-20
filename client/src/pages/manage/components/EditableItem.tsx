@@ -5,11 +5,19 @@ import { GiSave, GiCancel, } from 'react-icons/gi';
 type DataTableItemProps = {
     record: { id: number, [key: string]: any },
     updateEditable: ((id: number | undefined) => void),
+    types: []
 }
 
 type ActionButton = {
     label: 'Save' | 'Cancel',
     icon: ReactElement,
+}
+
+const ATTRIBUTES_TO_INPUTS = {
+    'Integer': 'number',
+    'String': 'text',
+    'Numeric': 'number',
+    'DateTime': 'datetime-local',
 }
 
 const DataTableItem = (props: DataTableItemProps) => {
@@ -28,7 +36,11 @@ const DataTableItem = (props: DataTableItemProps) => {
     return (
         <Tr>
             { Object.values(record).slice(1).map((value) => (
-                <Td>{value}</Td>
+                <Td>
+                    <input
+                     placeholder='not implemented yet 😬'
+                    />
+                </Td>
             ))}
 
             <Td>
