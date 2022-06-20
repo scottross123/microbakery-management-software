@@ -9,10 +9,13 @@ import {
     Td,
     TableCaption,
     TableContainer,
+    Box,
+    Container,
   } from '@chakra-ui/react'
 import Loading from '../Loading';
 import { useFetch } from '../../hooks/useFetch';
 import DataTableList from './components/DataTableList';
+import React from 'react';
 
 type DataTableProps = {
     table: string;
@@ -26,17 +29,17 @@ const DataTable = (props: DataTableProps) => {
     error && console.log(error);
   
     return (
-        <Flex
-        justifyContent='center'
-        >
+        <React.Fragment>
             { loading ? (
                 <Loading />
             ) : ( 
-            <TableContainer>
+            <TableContainer
+             display='block'
+            >
                 <DataTableList records={data.records}/>
             </TableContainer>
             )}
-        </Flex>
+        </React.Fragment>
     );
 }
 

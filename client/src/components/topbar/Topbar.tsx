@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Text } from "@chakra-ui/react";
 import { stringify } from "querystring";
 import { useLocation } from 'react-router-dom';
 
@@ -15,33 +15,21 @@ const Topbar = (props: TopbarProps) => {
     return (
         <Flex
          backgroundColor='green.50'
-         w='100%'
-         h='7.5%'
          borderBottom='1px'
          flexDir='row'
-         pos='sticky'
         >
             <Box
-             m='1em'
-             alignSelf='flex-start'
-             position='absolute'
-             left='0'
-             bottom='0'
+             m='.5em'
             >
-                <Text fontSize='2xl'>
-                    { page }
-                </Text>
+                <Text>{page}</Text>
             </Box>
 
+            <Spacer />
+
             <Box
-             m='1em'
-             alignSelf='flex-end'
-             position='absolute'
-             right='0'
+             m='.5em'
             >
-                <Text fontSize='2xl'>
-                    { action ? action : '' }
-                </Text>
+                { action ? action : 'bruh' }
             </Box>
         </Flex>
     );

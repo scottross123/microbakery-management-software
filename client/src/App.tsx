@@ -1,4 +1,4 @@
-import { ChakraProvider, Flex } from "@chakra-ui/react"
+import { ChakraProvider, Flex, Text, } from "@chakra-ui/react"
 import Sidebar from "./components/sidebar/Sidebar";
 import  Topbar from "./components/topbar/Topbar";
 import RouterProvider from "./routes/RouterProvider";
@@ -11,7 +11,6 @@ export const App = () => {
       <Flex
         h='100vh'
         flexDir='row'
-        overflow='hiden'
       >
         <Sidebar/>
 
@@ -19,9 +18,17 @@ export const App = () => {
           w='85%'
           flexDir='column'
         >
+
           <Topbar />
 
-          <RouterProvider />
+          <Flex
+           justifyContent='center'
+           alignItems='flex-start'
+           h='100%'
+           overflowY='scroll'
+          >
+            <RouterProvider/>
+          </Flex>
         </Flex>
       </Flex>
     </ChakraProvider>
