@@ -1,10 +1,23 @@
 package com.example.scottross123.microbakery.model;
 
+import javax.persistence.*;
+
+@Entity(name = "Customer")
 public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "f_name")
     private String firstName;
+
+    @Column(name = "l_name")
     private String lastName;
+
+    @Column(name = "phone_num")
     private String phoneNumber;
+
+    public Customer() {}
 
     public Customer(Long id, String firstName, String lastName, String phoneNumber) {
         this.id = id;
@@ -56,3 +69,8 @@ public class Customer {
     }
 
 }
+
+/*
+ * use @transiet for fullname attribute
+ * should address be a separate table?
+ */
