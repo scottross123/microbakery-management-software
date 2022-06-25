@@ -1,6 +1,7 @@
 package com.example.scottross123.microbakery.service;
 
 import com.example.scottross123.microbakery.model.Customer;
+import com.example.scottross123.microbakery.model.Order;
 import com.example.scottross123.microbakery.repository.CustomerRepository;
 
 import java.util.List;
@@ -41,4 +42,6 @@ public class CustomerService {
         customer.setLastName(updatedCustomer.getLastName());
         customer.setPhoneNumber(updatedCustomer.getPhoneNumber());
     }
+
+    //public List<Order> getCustomerOrders {}
 }
