@@ -1,6 +1,5 @@
 package com.example.scottross123.microbakery.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -13,10 +12,10 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "order_time")
+    @Column(name = "order_time", nullable = false)
     private LocalDateTime orderTime;
 
-    @Column(name = "pickup_time")
+    @Column(name = "pickup_time", nullable = false)
     private LocalDateTime pickupTime;
 
     @ManyToOne

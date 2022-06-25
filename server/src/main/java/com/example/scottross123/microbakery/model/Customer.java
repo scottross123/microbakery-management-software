@@ -11,13 +11,13 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "f_name")
+    @Column(name = "f_name", length = 100, nullable = false)
     private String firstName;
 
-    @Column(name = "l_name")
+    @Column(name = "l_name", length = 100, nullable = false)
     private String lastName;
 
-    @Column(name = "phone_num")
+    @Column(name = "phone_num", length = 12, nullable = false)
     private String phoneNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
