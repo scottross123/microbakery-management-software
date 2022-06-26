@@ -22,7 +22,7 @@ public class Product {
     @Column(name = "price", precision = 4, scale = 2, nullable = false)
     private BigDecimal price;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "line_item")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     public List<LineItem> lineItems;
 
     @OneToOne

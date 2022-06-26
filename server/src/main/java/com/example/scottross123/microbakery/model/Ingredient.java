@@ -1,10 +1,11 @@
 package com.example.scottross123.microbakery.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
 @Entity(name = "Ingredient")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Ingredient {
 
     @Id
@@ -63,6 +64,7 @@ public class Ingredient {
         this.cost = cost;
     }
 
+    @JsonIgnore
     public Set<Recipe> getRecipes() {
         return recipes;
     }
