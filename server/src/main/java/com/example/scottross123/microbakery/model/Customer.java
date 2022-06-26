@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "Customer")
 public class Customer {
@@ -21,7 +22,7 @@ public class Customer {
     private String phoneNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    private List<Order> orders;
+    private Set<Order> orders;
 
     public Customer() {}
 
@@ -64,8 +65,12 @@ public class Customer {
     }
 
     @JsonIgnore
-    public List<Order> getOrders() {
+    public Set<Order> getOrders() {
         return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

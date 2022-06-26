@@ -5,6 +5,7 @@ import com.example.scottross123.microbakery.model.Order;
 import com.example.scottross123.microbakery.repository.CustomerRepository;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -41,7 +42,11 @@ public class CustomerService {
         customer.setFirstName(updatedCustomer.getFirstName());
         customer.setLastName(updatedCustomer.getLastName());
         customer.setPhoneNumber(updatedCustomer.getPhoneNumber());
+        customer.setOrders(updatedCustomer.getOrders());
     }
 
-    //public List<Order> getCustomerOrders {}
+    public Set<Order> getOrders(Long id) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new IllegalStateException("Customer with id " + id + " does not exist!!"));
+        return customer.getOrders();
+    }
 }

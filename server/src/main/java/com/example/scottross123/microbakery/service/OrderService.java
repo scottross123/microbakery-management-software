@@ -1,11 +1,13 @@
 package com.example.scottross123.microbakery.service;
 
 import com.example.scottross123.microbakery.model.Customer;
+import com.example.scottross123.microbakery.model.LineItem;
 import com.example.scottross123.microbakery.model.Order;
 import com.example.scottross123.microbakery.repository.OrderRepository;
 import com.example.scottross123.microbakery.repository.CustomerRepository;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -42,10 +44,17 @@ public class OrderService {
         Order order = orderRepository.findById(id).orElseThrow(() -> new IllegalStateException("Order with id " + id + " does not exist!!"));
         order.setOrderTime(updatedOrder.getOrderTime());
         order.setPickupTime(updatedOrder.getPickupTime());
+        order.setOrderer(updatedOrder.getOrderer());
+        order.setItems(updatedOrder.getItems());
     }
 
     public Customer getOrderer(Long id) {
         Order order = orderRepository.findById(id).orElseThrow(() -> new IllegalStateException("Order with id " + id + " does not exist!!"));
         return order.getOrderer();
+    }
+
+    public Set<LineItem> getItems(Long id) {
+        Order order = orderRepository.findById(id).orElseThrow(() -> new IllegalStateException("Order with id " + id + " does not exist!!"));
+        return order.getItems();
     }
 }

@@ -1,15 +1,17 @@
 package com.example.scottross123.microbakery.controllers;
 
 import com.example.scottross123.microbakery.model.Customer;
+import com.example.scottross123.microbakery.model.LineItem;
 import com.example.scottross123.microbakery.model.Order;
 import com.example.scottross123.microbakery.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
-@RequestMapping(path="api/v1/order/")
+@RequestMapping(path = "api/v1/order/")
 public class OrderController {
 
     @Autowired
@@ -45,4 +47,12 @@ public class OrderController {
         return orderService.getOrderer(id);
     }
 
+    @GetMapping("/{id}/items")
+    public Set<LineItem> getItems(@PathVariable Long id) {
+        return orderService.getItems(id);
+    }
+
+    // add mapping for order total price
+
+    // add mapping for quantity of items
 }

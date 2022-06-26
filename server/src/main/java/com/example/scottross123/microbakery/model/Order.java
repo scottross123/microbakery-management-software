@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity(name = "\"Order\"")
 public class Order {
@@ -21,6 +22,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     private Customer customer;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    private Set<LineItem> lineItems;
 
     public Order() {}
 
@@ -55,6 +59,19 @@ public class Order {
     @JsonIgnore
     public Customer getOrderer() {
         return customer;
+    }
+
+    public void setOrderer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @JsonIgnore
+    public Set<LineItem> getItems() {
+        return lineItems;
+    }
+
+    public void setItems(Set<LineItem> lineItems) {
+        this.lineItems = lineItems;
     }
 
     @Override

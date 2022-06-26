@@ -1,7 +1,9 @@
 package com.example.scottross123.microbakery.controllers;
 
 import java.util.List;
+import java.util.Set;
 
+import com.example.scottross123.microbakery.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,6 +46,11 @@ public class CustomerController {
     @PutMapping("/{id}")
     public void updateCustomer(@PathVariable Long id, @RequestBody Customer updatedCustomer) {
         customerService.updateCustomer(id, updatedCustomer);
+    }
+
+    @GetMapping("/{id}/orders")
+    public Set<Order> getOrders(@PathVariable Long id){
+        return customerService.getOrders(id);
     }
 
 }

@@ -13,7 +13,7 @@ public class LineItem {
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private Order order;
 
