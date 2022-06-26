@@ -16,7 +16,7 @@ public class IngredientController {
     @Autowired
     private IngredientService ingredientService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Ingredient> getIngredients() {
         return ingredientService.getIngredients();
     }
@@ -26,7 +26,7 @@ public class IngredientController {
         return ingredientService.getIngredient(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public void addIngredient(@RequestBody Ingredient ingredient) {
         ingredientService.addIngredient(ingredient);
     }

@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping(path = "api/v1/recipe/")
+@RequestMapping(path = "api/v1/recipe")
 public class RecipeController {
 
 
     @Autowired
     private RecipeService recipeService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Recipe> getRecipes() {
         return recipeService.getRecipes();
     }
@@ -26,7 +26,7 @@ public class RecipeController {
         return recipeService.getRecipe(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public void addRecipe(@RequestBody Recipe recipe) {
         recipeService.addRecipe(recipe);
     }

@@ -17,13 +17,13 @@ import com.example.scottross123.microbakery.model.Customer;
 import com.example.scottross123.microbakery.service.CustomerService;
 
 @RestController
-@RequestMapping(path="api/v1/customer/")
+@RequestMapping(path="api/v1/customer")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
     
-    @GetMapping("/all")
+    @GetMapping
     public List<Customer> getCustomers() {
         return customerService.getCustomers();
     }
@@ -33,7 +33,7 @@ public class CustomerController {
         return customerService.getCustomer(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public void addCustomer(@RequestBody Customer customer) {
         customerService.addCustomer(customer);
     }

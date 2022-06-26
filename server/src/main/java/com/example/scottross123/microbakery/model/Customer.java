@@ -64,7 +64,6 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    @JsonIgnore
     public Set<Order> getOrders() {
         return orders;
     }

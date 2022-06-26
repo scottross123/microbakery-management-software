@@ -1,5 +1,7 @@
 package com.example.scottross123.microbakery.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 @Entity(name = "Recipe")
@@ -106,6 +108,7 @@ public class Recipe {
         this.bakingTime = bakingTime;
     }
 
+    @JsonIgnore
     public Product getProduct() {
         return product;
     }

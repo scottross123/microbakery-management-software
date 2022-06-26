@@ -6,7 +6,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Entity(name = "\"Order\"")
+@Entity(name = "Order")
+@Table(name = "`order`")
 public class Order {
 
     @Id

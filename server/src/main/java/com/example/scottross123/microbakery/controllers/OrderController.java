@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping(path = "api/v1/order/")
+@RequestMapping(path = "api/v1/order")
 public class OrderController {
 
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Order> getOrders() {
         return orderService.getOrders();
     }
@@ -27,7 +27,7 @@ public class OrderController {
         return orderService.getOrder(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public void addOrder(@RequestBody Order order) {
         orderService.addOrder(order);
     }

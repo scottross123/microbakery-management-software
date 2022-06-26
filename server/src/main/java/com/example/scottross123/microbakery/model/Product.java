@@ -25,8 +25,7 @@ public class Product {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     public List<LineItem> lineItems;
 
-    @OneToOne
-    @JoinColumn(name = "recipe_id", referencedColumnName = "id", nullable = false)
+    @OneToOne(mappedBy = "product")
     private Recipe recipe;
 
     public Product() {}
@@ -69,6 +68,7 @@ public class Product {
         this.price = price;
     }
 
+    @JsonIgnore
     public List<LineItem> getLineItems() {
         return lineItems;
     }
@@ -76,6 +76,7 @@ public class Product {
     public void setLineItems(List<LineItem> lineItems) {
         this.lineItems = lineItems;
     }
+
 
     public Recipe getRecipe() {
         return recipe;
