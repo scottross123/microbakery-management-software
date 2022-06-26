@@ -52,5 +52,4 @@ public class CustomerController {
     public Set<Order> getOrders(@PathVariable Long id){
         return customerService.getOrders(id);
     }
-
 }
