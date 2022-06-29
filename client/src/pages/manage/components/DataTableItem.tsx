@@ -38,7 +38,8 @@ const DataTableItem = (props: DataTableItemProps) => {
         { label: 'Details', icon: <GiOpenBook /> },
         { label: 'Edit', icon: <GiFountainPen  /> },
         { label: 'Delete', icon: <GiTrashCan /> },
-    ];    
+    ];
+
 
     return (
         <Tr>

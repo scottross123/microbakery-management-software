@@ -15,28 +15,39 @@ import {
 import Loading from '../Loading';
 import { useFetch } from '../../hooks/useFetch';
 import DataTableList from './components/DataTableList';
-import React from 'react';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+import {useLocation} from "react-router-dom";
 
-type DataTableProps = {
-    table: string;
+type Record = {
+    id: number,
+    [key: string]: any
 }
 
-const DataTable = (props: DataTableProps) => {
-    const { table } = props;
-    const url: string = '/get_records?table=' + table;
-    const { data, loading, error } = useFetch(url, {});
+const fetchRecords = async (table: string): Promise<Record[]> => {
+    const response = await fetch(`/api/v1/${table}`)
+    return response.json();
+}
+
+const DataTable = () => {
+    let location = useLocation();
+    let table = location.pathname.slice(1, -1);
+
+    const { data, isLoading, error } = useQuery<any, Error>(['records', table], () => fetchRecords(table));
+
+    console.log(data);
 
     error && console.log(error);
   
     return (
         <React.Fragment>
-            { loading ? (
+            { isLoading ? (
                 <Loading />
             ) : ( 
             <TableContainer
              display='block'
             >
-                <DataTableList records={data.records}/>
+                <DataTableList records={data} />
             </TableContainer>
             )}
         </React.Fragment>

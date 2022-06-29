@@ -31,31 +31,26 @@ const routes: route[] = [
     {
         path: '/customers',
         element: Table,
-        props: { table: 'customer' },
     },
 
     {
         path: '/orders',
         element: Table,
-        props: { table: 'order' },
     },
 
     {
         path: '/products',
         element: Table,
-        props: { table: 'product' },
     },
 
     {
         path: '/ingredients',
         element: Table,
-        props: { table: 'ingredient' },
     },
 
     {
         path: '/suppliers',
         element: Table,
-        props: { table: 'supplier' },
     },
 
     {
