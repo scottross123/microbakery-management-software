@@ -77,7 +77,7 @@ public class Product {
         this.lineItems = lineItems;
     }
 
-
+    @JsonIgnore
     public Recipe getRecipe() {
         return recipe;
     }

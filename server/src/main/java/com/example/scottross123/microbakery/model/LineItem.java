@@ -1,5 +1,7 @@
 package com.example.scottross123.microbakery.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity(name = "LineItem")
@@ -43,6 +45,7 @@ public class LineItem {
         this.quantity = quantity;
     }
 
+    @JsonIgnore
     public Order getOrder() {
         return order;
     }
