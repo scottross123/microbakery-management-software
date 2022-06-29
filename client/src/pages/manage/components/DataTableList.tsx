@@ -47,7 +47,6 @@ const DataTableList = (props: DataTableListProps<Object>) => {
     const cancelRef = useRef(null);
 
     console.log({'records': records?.[0]})
-
     console.log({'keys': Object.keys(records?.[0]!).map((key) => ( key))})
 
     return (

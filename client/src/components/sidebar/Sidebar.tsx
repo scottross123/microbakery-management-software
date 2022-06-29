@@ -52,7 +52,7 @@ const items: Record<string, Array<PanelItem>> = {
         { icon: GiShoppingCart, text: 'orders' },
         { icon: GiSlicedBread, text: 'products' },
         { icon: GiFlour, text: 'ingredients' },
-        { icon: GiWaterMill, text: 'suppliers' },
+        //{ icon: GiWaterMill, text: 'suppliers' },
     ],
 
     'reports': [

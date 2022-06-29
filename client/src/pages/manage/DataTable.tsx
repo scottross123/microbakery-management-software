@@ -15,12 +15,9 @@ import {
 import Loading from '../Loading';
 import { useFetch } from '../../hooks/useFetch';
 import DataTableList from './components/DataTableList';
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-
-type DataTableProps = {
-    table: string;
-}
+import {useLocation} from "react-router-dom";
 
 type Record = {
     id: number,
@@ -32,10 +29,11 @@ const fetchRecords = async (table: string): Promise<Record[]> => {
     return response.json();
 }
 
-const DataTable = (props: DataTableProps) => {
-    const { table } = props;
+const DataTable = () => {
+    let location = useLocation();
+    let table = location.pathname.slice(1, -1);
 
-    const { data, isLoading, error } = useQuery<any, Error>('records', () => fetchRecords(table));
+    const { data, isLoading, error } = useQuery<any, Error>(['records', table], () => fetchRecords(table));
 
     console.log(data);
 
