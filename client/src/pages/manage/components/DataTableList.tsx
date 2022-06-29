@@ -19,7 +19,7 @@ import DeleteRecord from './DeleteRecord';
 import EditableItem from './EditableItem';
 
 type DataTableListProps<Object> = {
-    records: Array<{ id: number, [key: string]: any }>
+    records: Array<{ id: number, [key: string]: any }> | undefined
 }
 
 type selectedId = {
@@ -33,7 +33,7 @@ const DataTableList = (props: DataTableListProps<Object>) => {
     const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
     const [ deletableId, setDeletableId ] = useState<number | undefined>();
     const [ editableId, setEditableId ] = useState<number | undefined>();
-    const { data, loading, error } = useFetch('/get_attribute_types?table=order', {});
+    //const { data, loading, error } = useFetch('/get_attribute_types?table=order', {});
 
     const updateDeletable = (id: typeof deletableId) => {
         setDeletableId(id)
@@ -46,11 +46,15 @@ const DataTableList = (props: DataTableListProps<Object>) => {
 
     const cancelRef = useRef(null);
 
+    console.log({'records': records?.[0]})
+
+    console.log({'keys': Object.keys(records?.[0]!).map((key) => ( key))})
+
     return (
         <Table variant='simple'>
             <Thead>
                 <Tr>
-                    { Object.keys(records[0]).slice(1).map((key) => (
+                    { (Object.keys(records?.[0]!)).slice(1).map((key) => (
                         <Td>{capitalize(key)}</Td>
                     ))}
 
@@ -59,9 +63,9 @@ const DataTableList = (props: DataTableListProps<Object>) => {
             </Thead>
 
             <Tbody>
-                { records.map((record) => (
+                { records?.map((record) => (
                     editableId === record.id ? ( 
-                        <EditableItem record={record}  updateEditable={updateEditable} types={data.types}/>
+                        <EditableItem record={record}  updateEditable={updateEditable} types={[]}/>
                     ) : (
                         <DataTableItem record={record} updateEditable={updateEditable} updateDeletable={updateDeletable} />
                     )

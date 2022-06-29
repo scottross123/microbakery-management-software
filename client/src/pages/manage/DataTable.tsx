@@ -28,14 +28,14 @@ type Record = {
 }
 
 const fetchRecords = async (table: string): Promise<Record[]> => {
-    const response = await fetch(`/get_records?table=${table}`)
+    const response = await fetch(`/api/v1/${table}`)
     return response.json();
 }
 
 const DataTable = (props: DataTableProps) => {
     const { table } = props;
-  
-    const { data, isLoading, error } = useQuery<Record[], Error>('records', () => fetchRecords(table));
+
+    const { data, isLoading, error } = useQuery<any, Error>('records', () => fetchRecords(table));
 
     console.log(data);
 
