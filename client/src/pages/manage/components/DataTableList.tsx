@@ -17,6 +17,8 @@ import { capitalize } from '../../../utils/capitalize';
 import DataTableItem from './DataTableItem';
 import DeleteRecord from './DeleteRecord';
 import EditableItem from './EditableItem';
+import {useDelete} from "../hooks/useDelete";
+import {useLocation} from "react-router-dom";
 
 type DataTableListProps<Object> = {
     records: Array<{ id: number, [key: string]: any }> | undefined
@@ -30,12 +32,16 @@ type selectedId = {
 const DataTableList = (props: DataTableListProps<Object>) => {
     const { records } = props;
 
+    let location = useLocation();
+    let table = location.pathname.slice(1, -1);
+
     const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
     const [ deletableId, setDeletableId ] = useState<number | undefined>();
     const [ editableId, setEditableId ] = useState<number | undefined>();
+
     //const { data, loading, error } = useFetch('/get_attribute_types?table=order', {});
 
-    const updateDeletable = (id: typeof deletableId) => {
+    const updateDeletable = async (id: typeof deletableId) => {
         setDeletableId(id)
         onToggle();
     }
