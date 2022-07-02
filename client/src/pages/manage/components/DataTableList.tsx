@@ -12,13 +12,12 @@ import {
     useDisclosure,
   } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
-import { useFetch } from '../../../hooks/useFetch';
 import { capitalize } from '../../../utils/capitalize';
 import DataTableItem from './DataTableItem';
 import DeleteRecord from './DeleteRecord';
 import EditableItem from './EditableItem';
-import {useDelete} from "../hooks/useDelete";
-import {useLocation} from "react-router-dom";
+import { useDelete } from "../hooks/useDelete";
+import { useLocation } from "react-router-dom";
 
 type DataTableListProps<Object> = {
     records: Array<{ id: number, [key: string]: any }> | undefined
@@ -52,8 +51,8 @@ const DataTableList = (props: DataTableListProps<Object>) => {
 
     const cancelRef = useRef(null);
 
-    console.log({'records': records?.[0]})
-    console.log({'keys': Object.keys(records?.[0]!).map((key) => ( key))})
+    //console.log({'records': records?.[0]})
+    //console.log({'keys': Object.keys(records?.[0]!).map((key) => ( key))})
 
     return (
         <Table variant='simple'>

@@ -1,17 +1,22 @@
-import {useMutation, UseMutationResult, useQueryClient} from "react-query";
+import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 
-export const useDelete: any = async () => {
+type DeleteRecord = {
+    table: string,
+    id: number,
+}
+
+const deleteRecord = async ({ table, id }: DeleteRecord): Promise<Response> => {
+    const response = await fetch(`/api/v1/${table}/${id}`,
+        {
+            method: 'DELETE',
+        })
+    return response;
+}
+
+export const useDelete = (): UseMutationResult<Response, unknown, DeleteRecord> => {
     const queryClient = useQueryClient();
 
-    const deleteRecord = async ({ table, id }: any) => {
-        const response = await fetch(`/api/v1/${table}/${id}`,
-            {
-                method: 'DELETE',
-            })
-        return response;
-    }
-
-    const mutation = useMutation<any, Error>(
+    return useMutation(
         'deleteRecord',
         deleteRecord,
         {
@@ -22,13 +27,11 @@ export const useDelete: any = async () => {
             return { previousRecords }
         },
         onSuccess: () => {
-            alert('yay record removed');
             console.log('succedded')
         },
         onError: (err, context: any) => {
             console.log(err)
             queryClient.setQueryData(['records', 'customer'], context.previousRecords)
-            alert('oh fuck something went wrong');
         },
         onSettled: () => {
             queryClient.invalidateQueries(['records', 'customer']);
@@ -36,5 +39,4 @@ export const useDelete: any = async () => {
         }
     });
 
-    return mutation
 }

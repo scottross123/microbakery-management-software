@@ -8,7 +8,7 @@ import {
     Button,
   } from '@chakra-ui/react'
 import { RefObject } from 'react';
-import {useMutation, useQueryClient} from 'react-query';
+import { MutationFunction, useMutation, useQueryClient} from 'react-query';
 import { useLocation } from "react-router-dom";
 import {useDelete} from "../hooks/useDelete";
 
@@ -24,43 +24,13 @@ const DeleteRecord = (props: DeleteRecordProps<HTMLButtonElement>) => {
 
     let location = useLocation();
     let table = location.pathname.slice(1, -1);
-    const queryClient = useQueryClient();
-
-    const deleteRecord = async () => {
-        const response = await fetch(`/api/v1/${table}/${deletableId}`,
-            {
-                method: 'DELETE',
-            })
-        return response;
-    }
-
-    const mutation = useMutation<any, Error>(
-        'deleteRecord',
-        deleteRecord,
-        {
-            onMutate: async () => {
-                await queryClient.cancelQueries(['records', 'customer']);
-                const previousRecords = queryClient.getQueryData(['records', 'customer'])
-                console.log('mutated')
-                return { previousRecords }
-            },
-            onSuccess: () => {
-                alert('yay record removed');
-                console.log('succedded')
-            },
-            onError: (err, context: any) => {
-                console.log(err)
-                queryClient.setQueryData(['records', 'customer'], context.previousRecords)
-                alert('oh fuck something went wrong');
-            },
-            onSettled: () => {
-                queryClient.invalidateQueries(['records', 'customer']);
-                console.log('settled')
-            }
-        });
+    const { mutateAsync } = useDelete();
 
     const handleDeleteClick = async () => {
-        await mutation.mutateAsync()
+        await mutateAsync({
+            table: table,
+            id: deletableId!,
+        })
         onClose();
     }
 
