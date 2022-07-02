@@ -21,7 +21,7 @@ const Topbar = (props: TopbarProps) => {
             <Box
              m='.5em'
             >
-                <Text>{page}</Text>
+                panderia
             </Box>
 
             <Spacer />
@@ -29,7 +29,7 @@ const Topbar = (props: TopbarProps) => {
             <Box
              m='.5em'
             >
-                { action ? action : '' }
+                Logout
             </Box>
         </Flex>
     );

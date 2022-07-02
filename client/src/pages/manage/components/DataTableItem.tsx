@@ -16,7 +16,12 @@ type ActionButton = {
 
 const DataTableItem = (props: DataTableItemProps) => {
     const { record, updateDeletable, updateEditable } = props;
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
+
+    const activeStyle = {
+        textDecor: 'none',
+        bgColor: '#FFEFCA',
+    }
 
     const handleClick = (component: ActionButton['label']) => {
         switch (component) {
@@ -40,9 +45,8 @@ const DataTableItem = (props: DataTableItemProps) => {
         { label: 'Delete', icon: <GiTrashCan /> },
     ];
 
-
     return (
-        <Tr>
+        <Tr _hover={activeStyle}>
             { Object.values(record).slice(1).map((value) => (
                 <Td>{value}</Td>
             ))}

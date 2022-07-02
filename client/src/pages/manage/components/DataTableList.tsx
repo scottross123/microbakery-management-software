@@ -9,14 +9,13 @@ import {
     Td,
     TableCaption,
     TableContainer,
-    useDisclosure,
-  } from '@chakra-ui/react';
-import { useRef, useState } from 'react';
+    useDisclosure, Box, Input,
+} from '@chakra-ui/react';
+import React, { useRef, useState } from 'react';
 import { capitalize } from '../../../utils/capitalize';
 import DataTableItem from './DataTableItem';
 import DeleteRecord from './DeleteRecord';
 import EditableItem from './EditableItem';
-import { useDelete } from "../hooks/useDelete";
 import { useLocation } from "react-router-dom";
 
 type DataTableListProps<Object> = {
@@ -38,8 +37,6 @@ const DataTableList = (props: DataTableListProps<Object>) => {
     const [ deletableId, setDeletableId ] = useState<number | undefined>();
     const [ editableId, setEditableId ] = useState<number | undefined>();
 
-    //const { data, loading, error } = useFetch('/get_attribute_types?table=order', {});
-
     const updateDeletable = async (id: typeof deletableId) => {
         setDeletableId(id)
         onToggle();
@@ -51,33 +48,42 @@ const DataTableList = (props: DataTableListProps<Object>) => {
 
     const cancelRef = useRef(null);
 
-    //console.log({'records': records?.[0]})
-    //console.log({'keys': Object.keys(records?.[0]!).map((key) => ( key))})
-
     return (
-        <Table variant='simple'>
-            <Thead>
-                <Tr>
-                    { (Object.keys(records?.[0]!)).slice(1).map((key) => (
-                        <Td>{capitalize(key)}</Td>
+        <Box mt={3} border="1px solid" borderColor="gray.100" borderRadius="md">
+            <Table variant='simple' size='sm'>
+                <Thead>
+                    <Tr fontWeight='semibold'>
+                        { (Object.keys(records?.[0]!)).slice(1).map((key) => (
+                            <Td>{capitalize(key)}</Td>
+                        ))}
+
+                        <Td>Actions</Td>
+                    </Tr>
+                </Thead>
+
+                <Tbody>
+                    { records?.map((record) => (
+                        editableId === record.id ? (
+                            <EditableItem record={record}  updateEditable={updateEditable} types={[]}/>
+                        ) : (
+                            <DataTableItem record={record} updateEditable={updateEditable} updateDeletable={updateDeletable} />
+                        )
                     ))}
+                </Tbody>
 
-                    <Td></Td>
-                </Tr>
-            </Thead>
+                <Tfoot>
+                    <Tr fontWeight='semibold'>
+                        { (Object.keys(records?.[0]!)).slice(1).map((key) => (
+                            <Td>{capitalize(key)}</Td>
+                        ))}
 
-            <Tbody>
-                { records?.map((record) => (
-                    editableId === record.id ? ( 
-                        <EditableItem record={record}  updateEditable={updateEditable} types={[]}/>
-                    ) : (
-                        <DataTableItem record={record} updateEditable={updateEditable} updateDeletable={updateDeletable} />
-                    )
-                ))}
-            </Tbody>
+                        <Td>Actions</Td>
+                    </Tr>
+                </Tfoot>
 
-            <DeleteRecord isOpen={isOpen} onClose={onClose} cancelRef={cancelRef} deletableId={deletableId}/>
-        </Table>
+                <DeleteRecord isOpen={isOpen} onClose={onClose} cancelRef={cancelRef} deletableId={deletableId}/>
+            </Table>
+        </Box>
     )
 }
 
