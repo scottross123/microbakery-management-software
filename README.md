@@ -3,14 +3,14 @@
 Full stack web app to manage database for a small bakery
 
 frontend:
-react
-typescript
+ - react
+ - typescript
 
 backend:
-flask
-sql-alchemy
-postgres
-heroku
+ - java
+ - spring boot
+ - jpa + hibernate
+ - postgresql
 
 requirements:
 react
