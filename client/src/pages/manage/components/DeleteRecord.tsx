@@ -10,7 +10,7 @@ import {
 import { RefObject } from 'react';
 import { MutationFunction, useMutation, useQueryClient} from 'react-query';
 import { useLocation } from "react-router-dom";
-import {useDelete} from "../hooks/useDelete";
+import {useDeleteRecord} from "../hooks/useDeleteRecord";
 
 type DeleteRecordProps<FocusableElement> = {
     isOpen: boolean,
@@ -24,7 +24,7 @@ const DeleteRecord = (props: DeleteRecordProps<HTMLButtonElement>) => {
 
     let location = useLocation();
     let table = location.pathname.slice(1, -1);
-    const { mutateAsync } = useDelete();
+    const { mutateAsync } = useDeleteRecord(table);
 
     const handleDeleteClick = async () => {
         await mutateAsync({
