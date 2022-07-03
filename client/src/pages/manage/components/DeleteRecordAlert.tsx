@@ -19,7 +19,7 @@ type DeleteRecordProps<FocusableElement> = {
     deletableId: number | undefined,
 }
 
-const DeleteRecord = (props: DeleteRecordProps<HTMLButtonElement>) => {
+const DeleteRecordAlert = (props: DeleteRecordProps<HTMLButtonElement>) => {
     const { isOpen, onClose, cancelRef, deletableId } = props;
 
     let location = useLocation();
@@ -64,4 +64,4 @@ const DeleteRecord = (props: DeleteRecordProps<HTMLButtonElement>) => {
     )
 }
 
-export default DeleteRecord;
+export default DeleteRecordAlert;

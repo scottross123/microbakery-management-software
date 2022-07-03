@@ -22,7 +22,7 @@ import {
     Menu,
     MenuList,
     MenuButton,
-    MenuItem, Heading
+    MenuItem, Heading, useDisclosure
 } from '@chakra-ui/react'
 import Loading from '../Loading';
 import { useRecords } from './hooks/useRecords';
@@ -31,6 +31,7 @@ import React, { useState } from 'react';
 import { useLocation } from "react-router-dom";
 import {GoPlus, GoSearch, GoTriangleDown} from "react-icons/go";
 import { capitalize } from '../../utils/capitalize';
+import AddRecordModal from "./components/AddRecordModal";
 
 
 const DataTable = () => {
@@ -38,8 +39,16 @@ const DataTable = () => {
     let table = location.pathname.slice(1, -1);
 
     const { data: records, isLoading, error } = useRecords(table);
+    const {
+        isOpen: isOpenAddModal,
+        onClose: onCloseAddModal,
+        onToggle: onToggleAddModal
+    } = useDisclosure();
+    const model = table as 'customer' | 'order' | 'product' | 'ingredient';
 
-    //console.log(records);
+    const handleAddClick = () => {
+        onToggleAddModal();
+    }
 
     error && console.log(error);
   
@@ -79,8 +88,9 @@ const DataTable = () => {
                                 //colorScheme='brand.700'
                                 aria-label={table}
                                 rightIcon={<GoPlus />}
+                                onClick={handleAddClick}
                             >
-                                {capitalize(table)}
+                                {model}
                             </Button>
                         </Box>
                     </Flex>
@@ -92,6 +102,7 @@ const DataTable = () => {
                     </TableContainer>
                 </Box>
             )}
+            <AddRecordModal isOpen={isOpenAddModal} onClose={onCloseAddModal} model={model} />
         </React.Fragment>
     );
 }

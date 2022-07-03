@@ -1,5 +1,5 @@
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
-import { Customer, Order, Product, Ingredient } from "./models";
+import { Customer, Order, Product, Ingredient } from "../models";
 
 type useAddRecordProps = {
     table: string,
@@ -18,7 +18,7 @@ const addRecord = async ({ table, model }: useAddRecordProps): Promise<Response>
     return response;
 }
 
-export const useAddRecord = (): UseMutationResult<Response, unknown, useAddRecordProps> => {
+export const useAddRecord = (table: string): UseMutationResult<Response, unknown, useAddRecordProps> => {
     const queryClient = useQueryClient();
 
     return useMutation(
@@ -26,20 +26,20 @@ export const useAddRecord = (): UseMutationResult<Response, unknown, useAddRecor
         addRecord,
         {
             onMutate: async () => {
-                await queryClient.cancelQueries(['records', 'customer']);
-                const previousRecords = queryClient.getQueryData(['records', 'customer'])
+                await queryClient.cancelQueries(['records', table]);
+                const previousRecords = queryClient.getQueryData(['records', table])
                 console.log('mutated')
                 return { previousRecords }
             },
             onSuccess: () => {
-                console.log('succedded')
+                console.log('succeeded')
             },
             onError: (err, context: any) => {
                 console.log(err)
-                queryClient.setQueryData(['records', 'customer'], context.previousRecords)
+                queryClient.setQueryData(['records', table], context.previousRecords)
             },
             onSettled: () => {
-                queryClient.invalidateQueries(['records', 'customer']);
+                queryClient.invalidateQueries(['records', table]);
                 console.log('settled')
             }
         });

@@ -14,9 +14,10 @@ import {
 import React, { useRef, useState } from 'react';
 import { capitalize } from '../../../utils/capitalize';
 import DataTableItem from './DataTableItem';
-import DeleteRecord from './DeleteRecord';
+import DeleteRecordAlert from './DeleteRecordAlert';
 import EditableItem from './EditableItem';
 import { useLocation } from "react-router-dom";
+import AddRecordModal from "./AddRecordModal";
 
 type DataTableListProps<Object> = {
     records: Array<{ id: number, [key: string]: any }> | undefined
@@ -33,13 +34,18 @@ const DataTableList = (props: DataTableListProps<Object>) => {
     let location = useLocation();
     let table = location.pathname.slice(1, -1);
 
-    const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
+    const {
+        isOpen: isOpenDeleteAlert,
+        onOpen: onOpenDeleteAlert,
+        onClose: onCloseDeleteAlert,
+        onToggle: onToggleDeleteAlert
+    } = useDisclosure();
     const [ deletableId, setDeletableId ] = useState<number | undefined>();
     const [ editableId, setEditableId ] = useState<number | undefined>();
 
     const updateDeletable = async (id: typeof deletableId) => {
         setDeletableId(id)
-        onToggle();
+        onToggleDeleteAlert();
     }
 
     const updateEditable = (id: typeof editableId) => {
@@ -81,7 +87,7 @@ const DataTableList = (props: DataTableListProps<Object>) => {
                     </Tr>
                 </Tfoot>
 
-                <DeleteRecord isOpen={isOpen} onClose={onClose} cancelRef={cancelRef} deletableId={deletableId}/>
+                <DeleteRecordAlert isOpen={isOpenDeleteAlert} onClose={onCloseDeleteAlert} cancelRef={cancelRef} deletableId={deletableId}/>
             </Table>
         </Box>
     )
