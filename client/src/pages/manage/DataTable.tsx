@@ -90,7 +90,7 @@ const DataTable = () => {
                                 rightIcon={<GoPlus />}
                                 onClick={handleAddClick}
                             >
-                                {model}
+                                {capitalize(model)}
                             </Button>
                         </Box>
                     </Flex>
