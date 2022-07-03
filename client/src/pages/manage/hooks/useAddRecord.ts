@@ -18,7 +18,7 @@ const addRecord = async ({ table, model }: useAddRecordProps): Promise<Response>
     return response;
 }
 
-export const useDelete = (): UseMutationResult<Response, unknown, useAddRecordProps> => {
+export const useAddRecord = (): UseMutationResult<Response, unknown, useAddRecordProps> => {
     const queryClient = useQueryClient();
 
     return useMutation(
