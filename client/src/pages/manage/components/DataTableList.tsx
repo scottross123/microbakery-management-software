@@ -9,14 +9,15 @@ import {
     Td,
     TableCaption,
     TableContainer,
-    useDisclosure,
-  } from '@chakra-ui/react';
-import { useRef, useState } from 'react';
-import { useFetch } from '../../../hooks/useFetch';
+    useDisclosure, Box, Input,
+} from '@chakra-ui/react';
+import React, { useRef, useState } from 'react';
 import { capitalize } from '../../../utils/capitalize';
 import DataTableItem from './DataTableItem';
-import DeleteRecord from './DeleteRecord';
+import DeleteRecordAlert from './DeleteRecordAlert';
 import EditableItem from './EditableItem';
+import { useLocation } from "react-router-dom";
+import AddRecordModal from "./AddRecordModal";
 
 type DataTableListProps<Object> = {
     records: Array<{ id: number, [key: string]: any }> | undefined
@@ -30,14 +31,21 @@ type selectedId = {
 const DataTableList = (props: DataTableListProps<Object>) => {
     const { records } = props;
 
-    const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
+    let location = useLocation();
+    let table = location.pathname.slice(1, -1);
+
+    const {
+        isOpen: isOpenDeleteAlert,
+        onOpen: onOpenDeleteAlert,
+        onClose: onCloseDeleteAlert,
+        onToggle: onToggleDeleteAlert
+    } = useDisclosure();
     const [ deletableId, setDeletableId ] = useState<number | undefined>();
     const [ editableId, setEditableId ] = useState<number | undefined>();
-    //const { data, loading, error } = useFetch('/get_attribute_types?table=order', {});
 
-    const updateDeletable = (id: typeof deletableId) => {
+    const updateDeletable = async (id: typeof deletableId) => {
         setDeletableId(id)
-        onToggle();
+        onToggleDeleteAlert();
     }
 
     const updateEditable = (id: typeof editableId) => {
@@ -46,33 +54,42 @@ const DataTableList = (props: DataTableListProps<Object>) => {
 
     const cancelRef = useRef(null);
 
-    console.log({'records': records?.[0]})
-    console.log({'keys': Object.keys(records?.[0]!).map((key) => ( key))})
-
     return (
-        <Table variant='simple'>
-            <Thead>
-                <Tr>
-                    { (Object.keys(records?.[0]!)).slice(1).map((key) => (
-                        <Td>{capitalize(key)}</Td>
+        <Box mt={3} border="1px solid" borderColor="gray.100" borderRadius="md">
+            <Table variant='simple' size='sm'>
+                <Thead>
+                    <Tr fontWeight='semibold'>
+                        { (Object.keys(records?.[0]!)).slice(1).map((key) => (
+                            <Td>{capitalize(key)}</Td>
+                        ))}
+
+                        <Td>Actions</Td>
+                    </Tr>
+                </Thead>
+
+                <Tbody>
+                    { records?.map((record) => (
+                        editableId === record.id ? (
+                            <EditableItem record={record}  updateEditable={updateEditable} types={[]}/>
+                        ) : (
+                            <DataTableItem record={record} updateEditable={updateEditable} updateDeletable={updateDeletable} />
+                        )
                     ))}
+                </Tbody>
 
-                    <Td></Td>
-                </Tr>
-            </Thead>
+                <Tfoot>
+                    <Tr fontWeight='semibold'>
+                        { (Object.keys(records?.[0]!)).slice(1).map((key) => (
+                            <Td>{capitalize(key)}</Td>
+                        ))}
 
-            <Tbody>
-                { records?.map((record) => (
-                    editableId === record.id ? ( 
-                        <EditableItem record={record}  updateEditable={updateEditable} types={[]}/>
-                    ) : (
-                        <DataTableItem record={record} updateEditable={updateEditable} updateDeletable={updateDeletable} />
-                    )
-                ))}
-            </Tbody>
+                        <Td>Actions</Td>
+                    </Tr>
+                </Tfoot>
 
-            <DeleteRecord isOpen={isOpen} onClose={onClose} cancelRef={cancelRef} deletableId={deletableId}/>
-        </Table>
+                <DeleteRecordAlert isOpen={isOpenDeleteAlert} onClose={onCloseDeleteAlert} cancelRef={cancelRef} deletableId={deletableId}/>
+            </Table>
+        </Box>
     )
 }
 

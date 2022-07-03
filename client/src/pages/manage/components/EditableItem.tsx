@@ -23,6 +23,11 @@ const ATTRIBUTES_TO_INPUTS = {
 const DataTableItem = (props: DataTableItemProps) => {
     const { record, updateEditable } = props;
 
+    const activeStyle = {
+        textDecor: 'none',
+        bgColor: '#FFEFCA',
+    }
+
     const handleClick = (label: 'Save' | 'Cancel') => {
         console.log(label);
         updateEditable(undefined);
@@ -34,7 +39,7 @@ const DataTableItem = (props: DataTableItemProps) => {
     ];    
 
     return (
-        <Tr>
+        <Tr _hover={activeStyle}>
             { Object.values(record).slice(1).map((value) => (
                 <Td>
                     <input

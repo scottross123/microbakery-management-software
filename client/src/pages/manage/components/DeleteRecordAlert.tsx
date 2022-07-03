@@ -8,6 +8,9 @@ import {
     Button,
   } from '@chakra-ui/react'
 import { RefObject } from 'react';
+import { MutationFunction, useMutation, useQueryClient} from 'react-query';
+import { useLocation } from "react-router-dom";
+import {useDeleteRecord} from "../hooks/useDeleteRecord";
 
 type DeleteRecordProps<FocusableElement> = {
     isOpen: boolean,
@@ -16,8 +19,20 @@ type DeleteRecordProps<FocusableElement> = {
     deletableId: number | undefined,
 }
 
-const DeleteRecord = (props: DeleteRecordProps<HTMLButtonElement>) => {
+const DeleteRecordAlert = (props: DeleteRecordProps<HTMLButtonElement>) => {
     const { isOpen, onClose, cancelRef, deletableId } = props;
+
+    let location = useLocation();
+    let table = location.pathname.slice(1, -1);
+    const { mutateAsync } = useDeleteRecord(table);
+
+    const handleDeleteClick = async () => {
+        await mutateAsync({
+            table: table,
+            id: deletableId!,
+        })
+        onClose();
+    }
 
     return (
         <AlertDialog
@@ -32,14 +47,14 @@ const DeleteRecord = (props: DeleteRecordProps<HTMLButtonElement>) => {
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Are you sure you want to delete record id { deletableId }? You can't recover this record once it's been deleted.
+              Are you sure you want to delete this record?
             </AlertDialogBody>
 
             <AlertDialogFooter>
               <Button ref={cancelRef} onClick={onClose}>
                 Cancel
               </Button>
-              <Button colorScheme='red' onClick={onClose} ml={3}>
+              <Button colorScheme='red' onClick={handleDeleteClick} ml={3}>
                 Delete
               </Button>
             </AlertDialogFooter>
@@ -49,4 +64,4 @@ const DeleteRecord = (props: DeleteRecordProps<HTMLButtonElement>) => {
     )
 }
 
-export default DeleteRecord;
+export default DeleteRecordAlert;
