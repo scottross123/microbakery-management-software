@@ -1,1 +1,1 @@
-web: gunicorn run:app
+web: java -jar target/microbakery-0.0.1-SNAPSHOT.jar
