@@ -1,7 +1,7 @@
 .env
-__pycache__
 node_modules
 .vscode
-external.properties
+src/main/resources/external.properties
 .idea
 target/
+client/build
