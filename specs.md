@@ -1,3 +1,5 @@
+# User stories, notes, todos, plans, etc
+
 site should have sidebar for navigation <br />
 user authnetication and login (possible admin/customer login in the future) <br />
 site should have unique theme built with chakra ui <br />
@@ -13,7 +15,7 @@ database needs teaking, add supplier table, remove flour table, modify some attr
 add user table and user authentication with flask<br /><br />
 
 todo:<br />
-maybe use userouter hook for routing instead of routerprovider component<br />
+integrate react-hook-form<br />
 remove repeated flex component from each page comnent and put it in app.tsx <br /><br />
 
 bugs:<br />
