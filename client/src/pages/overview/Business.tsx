@@ -5,7 +5,7 @@ const Business = () => {
     <Flex
      justifyContent='center'
     >
-        business
+        bruh
     </Flex>
   )
 }

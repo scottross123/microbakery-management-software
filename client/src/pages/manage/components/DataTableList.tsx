@@ -18,6 +18,7 @@ import DeleteRecordAlert from './DeleteRecordAlert';
 import EditableItem from './EditableItem';
 import { useLocation } from "react-router-dom";
 import AddRecordModal from "./AddRecordModal";
+import { camelCaseConverter } from '../../../utils/camelCaseConverter';
 
 type DataTableListProps<Object> = {
     records: Array<{ id: number, [key: string]: any }> | undefined
@@ -54,17 +55,20 @@ const DataTableList = (props: DataTableListProps<Object>) => {
 
     const cancelRef = useRef(null);
 
+    const tableHeader =
+        <Tr fontWeight='semibold'>
+            { (Object.keys(records?.[0]!)).slice(1).map((key) => (
+                <Td>{camelCaseConverter(key)}</Td>
+            ))}
+
+            <Td textAlign="center">Actions</Td>
+        </Tr>
+
     return (
-        <Box mt={3} border="1px solid" borderColor="gray.100" borderRadius="md">
+        <Box mt={3} border="1px solid" borderColor="primary.main" borderRadius="md">
             <Table variant='simple' size='sm'>
                 <Thead>
-                    <Tr fontWeight='semibold'>
-                        { (Object.keys(records?.[0]!)).slice(1).map((key) => (
-                            <Td>{capitalize(key)}</Td>
-                        ))}
-
-                        <Td>Actions</Td>
-                    </Tr>
+                    {tableHeader}
                 </Thead>
 
                 <Tbody>
@@ -78,13 +82,7 @@ const DataTableList = (props: DataTableListProps<Object>) => {
                 </Tbody>
 
                 <Tfoot>
-                    <Tr fontWeight='semibold'>
-                        { (Object.keys(records?.[0]!)).slice(1).map((key) => (
-                            <Td>{capitalize(key)}</Td>
-                        ))}
-
-                        <Td>Actions</Td>
-                    </Tr>
+                    {tableHeader}
                 </Tfoot>
 
                 <DeleteRecordAlert isOpen={isOpenDeleteAlert} onClose={onCloseDeleteAlert} cancelRef={cancelRef} deletableId={deletableId}/>

@@ -49,18 +49,18 @@ const AddRecordModal = (props: AddRecordModalProps) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent>
-                <ModalHeader>Add a new {model}</ModalHeader>
+            <ModalContent backgroundColor="brand.main">
+                <ModalHeader>Add a new {model}!</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                     { form }
                 </ModalBody>
 
                 <ModalFooter>
-                    <Button mr={3} onClick={onClose}>
+                    <Button mr={3} variant="outline" onClick={onClose}>
                         Cancel
                     </Button>
-                    <Button onClick={handleAddClick}>
+                    <Button variant="outline" onClick={handleAddClick}>
                         Add!
                     </Button>
                 </ModalFooter>
