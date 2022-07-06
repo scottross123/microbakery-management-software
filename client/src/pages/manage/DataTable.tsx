@@ -58,7 +58,7 @@ const DataTable = () => {
                 <Loading />
             ) : (
                 <Box
-                    width="90%"
+                    width="85%"
                 >
                     <Heading mt={9}>
                         {capitalize(model) + 's'}
@@ -68,15 +68,13 @@ const DataTable = () => {
                         mt={3}
                         justifyContent="space-between"
                     >
-                        <Box borderRadius="md" width="80%">
+                        <Box borderRadius="md" width="70%">
                             <InputGroup>
                                 <InputLeftElement children={<GoSearch />} />
                                 <Input
                                     width="100%"
                                     placeholder='Search...'
                                     focusBorderColor="primary.main"
-                                    borderColor='primary.main'
-                                    _hover={{ bg: 'brand.main' }}
                                 />
                             </InputGroup>
                         </Box>

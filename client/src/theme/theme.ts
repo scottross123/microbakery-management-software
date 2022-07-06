@@ -11,8 +11,24 @@ const theme = extendTheme({
             variants: {
                 outline: {
                     borderColor: 'primary.main',
+                    _hover: {
+                        bg: 'brand.700',
+                    }
                 },
             },
+        },
+        Input: {
+            baseStyle: {
+                field: {
+                    borderColor: 'primary.main',
+                    _hover: {
+                        bg: 'brand.main'
+                    },
+                    _focus: {
+                        bg: 'brand.main'
+                    },
+                }
+            }
         },
 
         Table: {

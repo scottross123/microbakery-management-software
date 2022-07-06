@@ -6,17 +6,17 @@ export const AddCustomerForm = () => {
         <form>
             <FormControl>
                 <FormLabel htmlFor='first-name'>First name</FormLabel>
-                <Input  placeholder='First name...'/>
+                <Input focusBorderColor="primary.main" placeholder='First name...'/>
             </FormControl>
 
             <FormControl mt={3}>
                 <FormLabel htmlFor='last-name'>Last name</FormLabel>
-                <Input  placeholder='Last name...'/>
+                <Input focusBorderColor="primary.main" placeholder='Last name...'/>
             </FormControl>
 
             <FormControl mt={3}>
                 <FormLabel htmlFor='phone-number'>Phone number</FormLabel>
-                <Input  placeholder='Phone number...'/>
+                <Input focusBorderColor="primary.main" placeholder='Phone number...'/>
             </FormControl>
         </form>
     )

@@ -30,7 +30,7 @@ export const App = () => {
               justifyContent='center'
               alignItems='flex-start'
               h='100%'
-              overflowY='scroll'
+              overflowY='auto'
             >
               <RouterProvider/>
             </Flex>
