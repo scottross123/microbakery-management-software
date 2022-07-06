@@ -1,7 +1,8 @@
-import { Flex, Icon, Text, Box } from "@chakra-ui/react";
+import {Flex, Icon, Text, Box, Tooltip} from "@chakra-ui/react";
 import { useState } from "react";
 import { IconType } from 'react-icons';
 import { NavLink } from 'react-router-dom';
+import {capitalize} from "../../utils/capitalize";
 
 type SidebarItemProps = {
     icon: IconType;
@@ -19,25 +20,26 @@ export const SidebarItem = (props : SidebarItemProps) => {
     }
 
     return (
-        <Flex
-            className='sidebar-item'
-            _hover={activeStyle}
-            w="100%"
-            justifyContent="center"
-            backgroundColor={isSelected}
-            p={2}
-        >
-            <NavLink
-                to={text}
-                className={({isActive}) => {
-                    isActive ? setIsSelected('brand.600') : setIsSelected('none');
-                    return undefined;
-                }}
+        <Tooltip hasArrow fontSize='lg' label={capitalize(text)} placement='right'>
+            <Flex
+                className='sidebar-item'
+                _hover={activeStyle}
+                w="100%"
+                justifyContent="center"
+                backgroundColor={isSelected}
+                p={2}
             >
-                <Icon as={icon} w={5} h={5} />
-            </NavLink>
-        </Flex>
-
+                <NavLink
+                    to={text}
+                    className={({isActive}) => {
+                        isActive ? setIsSelected('brand.600') : setIsSelected('none');
+                        return undefined;
+                    }}
+                >
+                    <Icon as={icon} w={5} h={5} />
+                </NavLink>
+            </Flex>
+        </Tooltip>
     )
 }
 
