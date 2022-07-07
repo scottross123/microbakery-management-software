@@ -2,15 +2,14 @@ import {Text, Heading, Flex, Grid, GridItem, Center, Icon, Box, Link, Image} fro
 import { MdBakeryDining } from "react-icons/md";
 import {ImGithub} from "react-icons/im";
 import {useState} from "react";
-import bread1 from '../../assets/bread1.jpeg';
-import bread2 from '../../assets/bread2.jpeg';
+import { breads } from '../../assets/exports';
 
 // ../../../assets/
 
 const Home = () => {
     const [randomImage, setRandomImage] = useState<number>(
-        Math.floor(Math.random() * (2 - 1 + 1) + 1)
-    )
+        Math.floor(Math.random() * (19 - 0 + 1) + 0)
+    );
 
     return (
         <Grid
@@ -27,12 +26,14 @@ const Home = () => {
                     <Icon as={ MdBakeryDining } h={38} w={38}/>
                 </Flex>
             </GridItem>
-            <GridItem colSpan={2} rowSpan={3} bg="brand.main" borderRadius="md">
-                <Image
-                    p={5}
-                    src={bread2}
-                    alt='some bread'
-                />
+            <GridItem className='image-container' colSpan={2} rowSpan={3} bg="brand.main" borderRadius="md">
+                <Flex height='100%' className='image' justifyContent='center' alignItems='center'>
+                    <Image
+                        p={5}
+                        src={breads[randomImage]}
+                        alt='some bread'
+                    />
+                </Flex>
             </GridItem>
             <GridItem colSpan={3} rowSpan={2} bg="brand.main" borderRadius="md">
                     <Box p={5}>
@@ -43,7 +44,7 @@ const Home = () => {
                         <Text mt={2}>Tables include: Customer, Order, Product, LineItem, Recipe, and Ingredient.
                             Future tables: User, Business, Address, Supplier, Inventory</Text>
 
-                        <Text mt={2} >The UI / frontend is a React app coded in TypeScript. The server / backend is a Spring Boot app coded in Java.</Text>
+                        <Text mt={2} >The UI / frontend is a React app coded in TypeScript. The server / backend is a Spring Boot app coded in and built in Maven.</Text>
 
                         <Text mt={2}>The database is constructed in PostgreSQL and hosted on Heroku.</Text>
 
