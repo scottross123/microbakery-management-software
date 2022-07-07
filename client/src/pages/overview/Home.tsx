@@ -2,7 +2,7 @@ import {Text, Heading, Flex, Grid, GridItem, Center, Icon, Box, Link, Image} fro
 import { MdBakeryDining } from "react-icons/md";
 import {ImGithub} from "react-icons/im";
 import {useState} from "react";
-import { breads } from '../../assets/exports';
+import { breads } from '../../assets/bread/exports';
 
 // ../../../assets/
 
@@ -22,7 +22,7 @@ const Home = () => {
         >
             <GridItem colSpan={3} rowSpan={1} bg="brand.main" borderRadius="md" textAlign="center">
                 <Flex height='100%' justifyContent='center' alignItems='center' flexDir='column' p={5}>
-                    <Heading as='h1' fontSize='50px'>Panader.io</Heading>
+                    <Heading as='h1' fontSize='50px' fontFamily='IBM Plex Mono'>Panader.io</Heading>
                     <Icon as={ MdBakeryDining } h={38} w={38}/>
                 </Flex>
             </GridItem>

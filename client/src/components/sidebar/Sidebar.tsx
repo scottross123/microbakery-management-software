@@ -41,15 +41,15 @@ type PanelItem = {
 
 const items: Array<PanelItem> = [
     { icon: GiHouse, text: 'home' },
-    { icon: GiPieChart, text: 'dashboard' },
+    //{ icon: GiPieChart, text: 'dashboard' },
     { icon: GiShop, text: 'business' },
     { icon: GiThreeFriends, text: 'customers' },
     { icon: GiShoppingCart, text: 'orders' },
     { icon: GiSlicedBread, text: 'products' },
     { icon: GiFlour, text: 'ingredients' },
-    { icon: GiWoodenCrate, text: 'inventory' },
-    { icon: GiSettingsKnobs, text: 'options' },
-    { icon: GiExitDoor, text: 'logout' },
+    //{ icon: GiWoodenCrate, text: 'inventory' },
+    //{ icon: GiSettingsKnobs, text: 'options' },
+    //{ icon: GiExitDoor, text: 'logout' },
 ];
 export const Sidebar = () => {
 
@@ -91,18 +91,3 @@ export const Sidebar = () => {
 }
 
 export default Sidebar;
-/*
-            <Flex
-             flexDir="column"
-             w='100%'
-            >
-                <Heading
-                 mt={50}
-                 mb={50}
-                 alignSelf="center"
-                 letterSpacing="tight"
-                >
-                    Panader.io
-                </Heading>
-            </Flex>
- */
