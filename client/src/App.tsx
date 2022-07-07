@@ -21,7 +21,7 @@ export const App = () => {
 
           <Flex
               className="app-content"
-            w='85%'
+            w='90%'
             flexDir='column'
           >
 

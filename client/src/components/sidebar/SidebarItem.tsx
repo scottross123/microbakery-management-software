@@ -36,7 +36,7 @@ export const SidebarItem = (props : SidebarItemProps) => {
                         return undefined;
                     }}
                 >
-                    <Icon as={icon} w={5} h={5} />
+                    <Icon as={icon} boxSize={[2, 5, 10]} />
                 </NavLink>
             </Flex>
         </Tooltip>

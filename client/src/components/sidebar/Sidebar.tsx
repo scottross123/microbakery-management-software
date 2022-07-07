@@ -7,7 +7,7 @@ import {
     AccordionPanel,
     AccordionIcon,
     Box,
-    useTheme, Spacer,
+    useTheme, Spacer, Icon,
 } from "@chakra-ui/react"
 
 import { 
@@ -33,6 +33,7 @@ import SidebarItem from "./SidebarItem";
 import { IconType } from 'react-icons';
 import { } from '../../pages/exports';
 import './sidebar.css';
+import {MdBakeryDining} from "react-icons/md";
 
 type PanelItem = {
     icon: IconType,
@@ -54,24 +55,24 @@ const items: Array<PanelItem> = [
 export const Sidebar = () => {
 
     return (
-        <Flex
-         className="sidebar-wrapper"
-         w="15%"
-         h="100vh"
-         pos="sticky"
-         justifyContent="center"
-         alignItems="center"
-        >
+
             <Flex
                 className="sidebar"
                 background='brand.main'
                 flexDir="column"
-                width='50%'
+                width='100%'
                 height='90%'
                 justifyContent="center"
                 alignItems="center"
-                borderRadius="30px"
+                w="10%"
+                h="100vh"
+                pos="sticky"
             >
+                <Flex justifyContent='center' alignItems='center' flexDir='column' p={5}>
+                    <Heading as='h1' fontSize='20px' fontFamily='IBM Plex Mono'>Panader.io</Heading>
+                    <Icon as={ MdBakeryDining } h={5} w={5}/>
+                </Flex>
+
                 <Flex
                     className="sidebar-items"
                     flexDir="column"
@@ -86,7 +87,7 @@ export const Sidebar = () => {
 
                 </Flex>
             </Flex>
-        </Flex>
+
     )
 }
 

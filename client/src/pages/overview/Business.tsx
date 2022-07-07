@@ -1,7 +1,5 @@
 import {Box, Center, Flex, Grid, GridItem, Heading, Icon, Image, Link, Text} from "@chakra-ui/react";
-import banner from '../../assets/banner.png';
 import cat from '../../assets/cat/cat.jpeg';
-import {breads} from "../../assets/bread/exports";
 
 const Business = () => {
     return (
