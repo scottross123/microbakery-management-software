@@ -30,7 +30,7 @@ export const SidebarItem = (props : SidebarItemProps) => {
                 p={2}
             >
                 <NavLink
-                    to={text}
+                    to={text === 'home' ? '' : text}
                     className={({isActive}) => {
                         isActive ? setIsSelected('brand.600') : setIsSelected('none');
                         return undefined;

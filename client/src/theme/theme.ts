@@ -30,7 +30,6 @@ const theme = extendTheme({
                 }
             }
         },
-
         Table: {
             parts: ['th', 'td'],
             baseStyle: {

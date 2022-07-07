@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Home, Dashboard, Business, Calendar, Table, Sales, Costs, Inventory, Profile, Options, Contact, } from "../pages/exports";
+import { Home, Business, Table, Profile, Options, Contact, } from "../pages/exports";
 
 export type route = {
     path: string,
@@ -14,18 +14,8 @@ const routes: route[] = [
     },
 
     {
-        path: '/dashboard',
-        element: Dashboard,
-    },
-
-    {
         path: '/business',
         element: Business,
-    },
-
-    {
-        path: '/calendar',
-        element: Calendar,
     },
 
     {
@@ -46,26 +36,6 @@ const routes: route[] = [
     {
         path: '/ingredients',
         element: Table,
-    },
-
-    {
-        path: '/suppliers',
-        element: Table,
-    },
-
-    {
-        path: '/costs',
-        element: Costs,
-    },
-
-    {
-        path: '/inventory',
-        element: Inventory,
-    },
-
-    {
-        path: '/sales',
-        element: Sales,
     },
 
     {

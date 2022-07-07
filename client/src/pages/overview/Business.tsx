@@ -1,13 +1,13 @@
-import { Flex } from "@chakra-ui/react";
+import {Flex, Grid, GridItem} from "@chakra-ui/react";
 
 const Business = () => {
-  return (
-    <Flex
-     justifyContent='center'
-    >
-        bruh
-    </Flex>
-  )
+    return (
+        <Flex
+            justifyContent='center'
+        >
+
+        </Flex>
+    );
 }
 
 export default Business;

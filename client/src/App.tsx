@@ -25,7 +25,7 @@ export const App = () => {
             flexDir='column'
           >
 
-
+            {/* main page content */}
             <Flex
               justifyContent='center'
               alignItems='flex-start'
