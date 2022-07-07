@@ -7,8 +7,8 @@ export { default as Business } from './overview/Business';
 export { default as Table } from './manage/DataTable';
 //export { default as Details } from './manage/DataDetails';
 
-//sexport { default as Inventory } from './reports/Inventory';
+//export { default as Inventory } from './reports/Inventory';
 
-export { default as Options } from './settings/Options';
-export { default as Profile } from './settings/Profile';
-export { default as Contact } from './settings/Contact';
+//export { default as Options } from './settings/Options';
+//export { default as Profile } from './settings/Profile';
+//export { default as Contact } from './settings/Contact';

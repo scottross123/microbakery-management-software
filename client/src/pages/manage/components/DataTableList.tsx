@@ -1,32 +1,21 @@
 import {
-    Flex,
     Table,
     Thead,
     Tbody,
     Tfoot,
     Tr,
-    Th,
     Td,
-    TableCaption,
-    TableContainer,
     useDisclosure, Box, Input,
 } from '@chakra-ui/react';
 import React, { useRef, useState } from 'react';
-import { capitalize } from '../../../utils/capitalize';
 import DataTableItem from './DataTableItem';
 import DeleteRecordAlert from './DeleteRecordAlert';
 import EditableItem from './EditableItem';
 import { useLocation } from "react-router-dom";
-import AddRecordModal from "./AddRecordModal";
 import { camelCaseConverter } from '../../../utils/camelCaseConverter';
 
 type DataTableListProps<Object> = {
     records: Array<{ id: number, [key: string]: any }> | undefined
-}
-
-type selectedId = {
-    id: number,
-    editing: boolean,
 }
 
 const DataTableList = (props: DataTableListProps<Object>) => {

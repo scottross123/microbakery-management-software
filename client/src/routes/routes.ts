@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Home, Business, Table, Profile, Options, Contact, } from "../pages/exports";
+import { Home, Business, Table, } from "../pages/exports";
 
 export type route = {
     path: string,
@@ -38,21 +38,6 @@ const routes: route[] = [
         element: Table,
     },
 
-    {
-        path: '/contact',
-        element: Contact,
-    },
-
-    {
-        path: '/options',
-        element: Options,
-    },
-
-    {
-        path: '/profile',
-        element: Profile,
-        props: { user: 'user' },
-    },
 ]
 
 export default routes;

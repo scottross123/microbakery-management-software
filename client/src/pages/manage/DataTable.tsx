@@ -24,7 +24,7 @@ import {
     MenuButton,
     MenuItem, Heading, useDisclosure
 } from '@chakra-ui/react'
-import Loading from '../Loading';
+import Loading from '../../components/Loading';
 import { useRecords } from './hooks/useRecords';
 import DataTableList from './components/DataTableList';
 import React, { useState } from 'react';
