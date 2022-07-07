@@ -37,7 +37,7 @@ const Home = () => {
             </GridItem>
             <GridItem colSpan={3} rowSpan={2} bg="brand.main" borderRadius="md">
                     <Box p={5}>
-                        <Text >A database management software for all your small-batch, cottage, and micro bakery needs!</Text>
+                        <Text>A database management software for all your small-batch, cottage, and micro bakery needs!</Text>
 
                         <Text mt={2}>This app lets the baker add, delete, and select records to keep track of customers, orders, products, recipes, ingredients.</Text>
 

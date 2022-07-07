@@ -22,8 +22,7 @@ const Business = () => {
                 <Text p={2}>
                     This small batch bakery specializes in sourdough / natural leavened breads and pastries, as well as using
                     whole grains and local ingredients. Open Tuesday to Friday from 7am to 4pm.
-                </Text>
-                <Text p={2}>
+                    <br />
                     4933 Trymore Road, <br />
                     Russell, <br />
                     Georgia, <br />
