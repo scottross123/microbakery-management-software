@@ -1,9 +1,9 @@
 # Microbakery Managment Software (WIP)
 
-Full stack web app to manage database for a small bakery
+### Full stack web app to manage database for a small bakery
 
 frontend:
- - react
+ - react w/ create-react-app
  - typescript
 
 backend:

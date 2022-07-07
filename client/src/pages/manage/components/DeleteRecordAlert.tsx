@@ -41,7 +41,7 @@ const DeleteRecordAlert = (props: DeleteRecordProps<HTMLButtonElement>) => {
         onClose={onClose}
       >
         <AlertDialogOverlay>
-          <AlertDialogContent>
+          <AlertDialogContent backgroundColor="brand.main">
             <AlertDialogHeader fontSize='lg' fontWeight='bold'>
               Delete Record
             </AlertDialogHeader>
@@ -51,10 +51,10 @@ const DeleteRecordAlert = (props: DeleteRecordProps<HTMLButtonElement>) => {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button variant='outline' ref={cancelRef} onClick={onClose}>
                 Cancel
               </Button>
-              <Button colorScheme='red' onClick={handleDeleteClick} ml={3}>
+              <Button variant='outline' colorScheme='red' onClick={handleDeleteClick} ml={3}>
                 Delete
               </Button>
             </AlertDialogFooter>

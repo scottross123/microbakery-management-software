@@ -1,6 +1,8 @@
-import { Flex, Icon, Text, Box } from "@chakra-ui/react";
+import {Flex, Icon, Text, Box, Tooltip} from "@chakra-ui/react";
+import { useState } from "react";
 import { IconType } from 'react-icons';
 import { NavLink } from 'react-router-dom';
+import {capitalize} from "../../utils/capitalize";
 
 type SidebarItemProps = {
     icon: IconType;
@@ -10,40 +12,45 @@ type SidebarItemProps = {
 export const SidebarItem = (props : SidebarItemProps) => {
     const { icon } = props;
     const { text } = props;
+    const [isSelected, setIsSelected] = useState<'brand.600' | 'none'>('none');
 
     const activeStyle = {
         textDecor: 'none', 
-        color: '#a48b73',
+        backgroundColor: 'brand.600',
     }
 
     return (
-        <NavLink
-        to={text}
-        style={
-            ({ isActive }) =>
-            isActive ? activeStyle : {}
-        }
-        >    
-            <Flex 
-            className='sidebar-item'
-            _hover={activeStyle}
-            justifyContent="center"
-            w="100%"
+        <Tooltip hasArrow fontSize='lg' label={capitalize(text)} placement='right'>
+            <Flex
+                className='sidebar-item'
+                _hover={activeStyle}
+                w="100%"
+                justifyContent="center"
+                backgroundColor={isSelected}
+                p={2}
             >
-                <Box alignSelf="center">
-                    <Icon as={icon} fontSize="3xl" />
-                </Box>
-
-                <Box
-                textDecoration='none' 
-                ml='.5em'
-                alignSelf="center" 
+                <NavLink
+                    to={text === 'home' ? '' : text}
+                    className={({isActive}) => {
+                        isActive ? setIsSelected('brand.600') : setIsSelected('none');
+                        return undefined;
+                    }}
                 >
-                    <Text>{text}</Text>
-                </Box>
+                    <Icon as={icon} boxSize={[2, 5, 10]} />
+                </NavLink>
             </Flex>
-        </NavLink>
+        </Tooltip>
     )
 }
 
+export default SidebarItem;
 // to-do: split this into two components, Sidebar.tsx for UI layout and SidebarList.tsx for functionality 
+/*
+                <Box
+                textDecoration='none'
+                ml='.5em'
+                alignSelf="center"
+                >
+                    <Text>{text}</Text>
+                </Box>
+ */

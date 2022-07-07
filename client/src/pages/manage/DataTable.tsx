@@ -24,7 +24,7 @@ import {
     MenuButton,
     MenuItem, Heading, useDisclosure
 } from '@chakra-ui/react'
-import Loading from '../Loading';
+import Loading from '../../components/Loading';
 import { useRecords } from './hooks/useRecords';
 import DataTableList from './components/DataTableList';
 import React, { useState } from 'react';
@@ -57,38 +57,57 @@ const DataTable = () => {
             { isLoading ? (
                 <Loading />
             ) : (
-                <Box>
+                <Box
+                    width="85%"
+                >
                     <Heading mt={9}>
-                        {capitalize(table) + 's'}
+                        {capitalize(model) + 's'}
                     </Heading>
 
-                    <Flex mt={3}>
-                        <Box border="1px solid" borderColor="gray.100" borderRadius="md">
+                    <Flex
+                        mt={3}
+                        justifyContent="space-between"
+                    >
+                        <Box borderRadius="md" width="70%">
                             <InputGroup>
-                                <InputLeftElement children={<GoSearch color='gray.300' />} />
-                                <Input placeholder='Search...' />
+                                <InputLeftElement children={<GoSearch />} />
+                                <Input
+                                    width="100%"
+                                    placeholder='Search...'
+                                    focusBorderColor="primary.main"
+                                />
                             </InputGroup>
                         </Box>
-                        <Spacer />
                         <Box>
-                            <Menu>
-                                <MenuButton as={Button} variant='outline' rightIcon={<GoTriangleDown />}>
+                            <Menu isLazy>
+                                <MenuButton
+                                    as={Button}
+                                    variant='outline'
+                                    rightIcon={<GoTriangleDown />}
+                                    _hover={{ bg: 'brand.main' }}
+                                    _expanded={{ bg: 'brand.main' }}
+                                    _focus={{ bg: 'brand.main' }}
+                                    focusBorderColor="primary.main"
+                                    borderColor='primary.main'
+                                >
                                     Sort
                                 </MenuButton>
-                                <MenuList>
-                                    <MenuItem>Ascending order</MenuItem>
-                                    <MenuItem>Descending order</MenuItem>
+                                <MenuList borderColor='primary.main' backgroundColor='brand.800' >
+                                    <MenuItem _focus={{ bg: 'brand.700' }}>Ascending order</MenuItem>
+                                    <MenuItem _hover={{ bg: 'brand.700' }}>Descending order</MenuItem>
                                 </MenuList>
                             </Menu>
                         </Box>
-                        <Spacer />
-                        <Box justifySelf='center'>
+                        <Box justifySelf='center' >
                             <Button
                                 variant='outline'
-                                //colorScheme='brand.700'
+                                colorScheme='primary.main'
                                 aria-label={table}
                                 rightIcon={<GoPlus />}
                                 onClick={handleAddClick}
+                                borderColor='primary.main'
+                                _hover={{ bg: 'brand.main' }}
+                                _focus={{ bg: 'brand.main' }}
                             >
                                 {capitalize(model)}
                             </Button>

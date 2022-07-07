@@ -1,6 +1,5 @@
 import { ChakraProvider, Flex, Text, } from "@chakra-ui/react"
 import Sidebar from "./components/sidebar/Sidebar";
-import  Topbar from "./components/topbar/Topbar";
 import RouterProvider from "./routes/RouterProvider";
 import theme from './theme/theme';
 import { QueryClientProvider, QueryClient } from 'react-query';
@@ -13,23 +12,25 @@ export const App = () => {
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
         <Flex
+            className="app"
           h='100vh'
           flexDir='row'
+          backgroundColor='brand.800'
         >
           <Sidebar/>
 
           <Flex
-            w='85%'
+              className="app-content"
+            w='90%'
             flexDir='column'
           >
 
-            <Topbar />
-
+            {/* main page content */}
             <Flex
               justifyContent='center'
               alignItems='flex-start'
               h='100%'
-              overflowY='scroll'
+              overflowY='auto'
             >
               <RouterProvider/>
             </Flex>

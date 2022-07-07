@@ -116,6 +116,23 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>3.0.4</version>
+				<configuration>
+					<appName>microbakery</appName>
+					<jdkVersion>18.0.1</jdkVersion>
+					<includeTarget>false</includeTarget>
+					<includes>
+						<include>target/microbakery-0.0.1-SNAPSHOT.jar</include>
+					</includes>
+					<processTypes>
+						<web>java -jar target/microbakery-0.0.1-SNAPSHOT.jar</web>
+					</processTypes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
