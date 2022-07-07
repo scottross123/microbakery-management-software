@@ -1,4 +1,4 @@
-import { IconButton, Stack, Td, Tooltip, Tr, } from '@chakra-ui/react';
+import {Center, IconButton, Stack, Td, Tooltip, Tr,} from '@chakra-ui/react';
 import { ReactElement } from 'react';
 import { GiSave, GiCancel, } from 'react-icons/gi';
 
@@ -25,7 +25,7 @@ const DataTableItem = (props: DataTableItemProps) => {
 
     const activeStyle = {
         textDecor: 'none',
-        bgColor: '#FFEFCA',
+        bgColor: 'brand.600',
     }
 
     const handleClick = (label: 'Save' | 'Cancel') => {
@@ -49,21 +49,24 @@ const DataTableItem = (props: DataTableItemProps) => {
             ))}
 
             <Td>
-                <Stack direction='row' spacing={4} align='center'>
-                    { actionButtons.map(({ label, icon }: ActionButton ) => {
-                        return ( <>
-                        <Tooltip hasArrow label={label} placement='top'>
-                            <IconButton 
-                            aria-label={label} 
-                            variant='ghost' 
-                            icon={icon} 
-                            fontSize="3xl"
-                            onClick={() => handleClick(label)} 
-                            />
-                        </Tooltip>
-                        </> )
-                    })}
-                </Stack>
+                <Center>
+                    <Stack direction='row' spacing={4} align='center'>
+                        { actionButtons.map(({ label, icon }: ActionButton ) => {
+                            return ( <>
+                            <Tooltip hasArrow label={label} placement='top'>
+                                <IconButton
+                                aria-label={label}
+                                variant='ghost'
+                                icon={icon}
+                                fontSize="3xl"
+                                onClick={() => handleClick(label)}
+                                _hover={{ bg: 'brand.700' }}
+                                />
+                            </Tooltip>
+                            </> )
+                        })}
+                    </Stack>
+                </Center>
             </Td>
         </Tr> 
     );
