@@ -1,7 +1,7 @@
 # Microbakery Managment Software (WIP)
 
-## Panader.io
-Panader.io (name subject to change) is a full stack web application created with React and Spring Boot for a small batch 
+## Panaderia
+Panaderia (name subject to change) is a full stack web application created with React and Spring Boot for a small batch 
 baker to manage their small business. The user is able to perform CRUD operations on PostgreSQL tables such as Customer, Order, 
 Product, and etc through the UI. Spring Boot acts as a REST api and exposes endpoints to the React app so the user can
 modify and read data from the database. Both the frontend and backend are bundled together as one executable JAR file using Maven which is then 
