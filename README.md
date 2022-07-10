@@ -17,6 +17,8 @@ both TypeScript and Java.
 
 ![Schema](bakery.drawio.png)
 
+Gonna do a lot of this over at some point, and add tables for Addresses, Supplier, etc.
+
 ## Technologies
 
 ### Frontend:
@@ -39,7 +41,7 @@ both TypeScript and Java.
 To run locally you can either run the frontend and bakcend separately using `npm start` and `command for maven i forgot`. (make sure you run `npm install` )
 
 Or you can simply build a JAR file using `mvn install clean` which will bundle the file in the directory `target`.
-Then run `java -jar microbakery-0.0.1-SNAPSHOT` to run it.
+Then run `java -jar microbakery-0.0.1-SNAPSHOT.jar` to run it.
 
 ## Todo
 - Finish adding/updating records through client
