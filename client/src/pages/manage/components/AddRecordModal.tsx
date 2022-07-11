@@ -60,7 +60,7 @@ const AddRecordModal = (props: AddRecordModalProps) => {
                     <Button mr={3} variant="outline" onClick={onClose}>
                         Cancel
                     </Button>
-                    <Button variant="outline" onClick={handleAddClick}>
+                    <Button variant="outline" type='submit' form="add-record-form" onClick={handleAddClick}>
                         Add!
                     </Button>
                 </ModalFooter>
