@@ -1,17 +1,13 @@
 import { FormControl, FormHelperText, FormLabel, Input } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import {useAddRecord} from "../hooks/useAddRecord";
+import { SubmitHandler, useForm} from "react-hook-form";
+import { useAddRecord } from "../hooks/useAddRecord";
 import { Customer } from "../models";
 
 export const AddCustomerForm = () => {
-    const {
-        handleSubmit,
-        register,
-        formState: { errors, isSubmitting },
-    } = useForm();
+    const { handleSubmit, register } = useForm<Customer>();
     const { mutateAsync } = useAddRecord('customer');
 
-    const onSubmit = (data: any) => {
+    const onSubmit: SubmitHandler<Customer> = (data: Customer) => {
         console.log({...data, 'orders': []});
         mutateAsync({
             table: 'customer',

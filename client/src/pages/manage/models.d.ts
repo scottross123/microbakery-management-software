@@ -2,6 +2,7 @@ export type Customer = {
     firstName: string,
     lastName: string,
     phoneNumber: string,
+    orders?: [],
 }
 
 export type Order = {
