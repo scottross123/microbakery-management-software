@@ -1,5 +1,7 @@
 import { FormControl, FormHelperText, FormLabel, Input } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import {useAddRecord} from "../hooks/useAddRecord";
+import { Customer } from "../models";
 
 export const AddCustomerForm = () => {
     const {
@@ -7,9 +9,14 @@ export const AddCustomerForm = () => {
         register,
         formState: { errors, isSubmitting },
     } = useForm();
+    const { mutateAsync } = useAddRecord('customer');
 
     const onSubmit = (data: any) => {
-        console.log(data);
+        console.log({...data, 'orders': []});
+        mutateAsync({
+            table: 'customer',
+            model: {...data, 'orders': []},
+        })
     }
 
     return (

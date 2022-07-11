@@ -6,14 +6,21 @@ type useAddRecordProps = {
     model: Customer | Order | Product | Ingredient,
 }
 
-const addRecord = async ({ table, model }: useAddRecordProps): Promise<Response> => {
+const addRecord = async (props: useAddRecordProps): Promise<Response> => {
+    const { table, model } = props;
+
     const response = await fetch(`/api/v1/${table}`,
         {
-            method: 'ADD',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
                 ...model,
             })
         });
+
+    console.log(JSON.stringify({...model}));
     if (!response.ok) throw new Error('Uh-oh, there was an error adding data to the server');
     return response;
 }

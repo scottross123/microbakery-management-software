@@ -53,7 +53,7 @@ const AddRecordModal = (props: AddRecordModalProps) => {
                 <ModalHeader>Add a new {model}!</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    { form }
+                    {form}
                 </ModalBody>
 
                 <ModalFooter>
