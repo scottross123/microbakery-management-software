@@ -13,9 +13,9 @@ backend for a full stack web project. I also wanted to learn the Spring Framewor
 concepts, develop a greater understanding for relational databases and creating a schema, and improve my coding skills in 
 both TypeScript and Java.
 
-## Schema
+## ER Diagram
 
-![Schema](bakery.drawio.png)
+![ER Diagram](bakery.drawio.png)
 
 Gonna do a lot of this over at some point, and add tables for Addresses, Supplier, etc.
 
